@@ -1,6 +1,6 @@
 <?php
 
-$db = mysqli_connect('localhost', 'root', '', '');
+$db = mysqli_connect('localhost', 'root', '16ecb0016t', 'gestionacademica');
 
 
 if (!$db) {
