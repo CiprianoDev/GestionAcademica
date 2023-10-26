@@ -1,0 +1,12 @@
+{
+    "name": "cia/gestioncademica",
+    "description": "",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "Controllers\\" : "./controllers",
+            "Models\\" : "./models"
+        }
+    }
+}

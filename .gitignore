@@ -1,0 +1,6 @@
+# Node.js (npm) dependencies
+/node_modules
+
+# Composer dependencies
+/vendor
+
