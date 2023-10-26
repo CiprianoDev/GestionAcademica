@@ -1,0 +1,46 @@
+
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.form{
+    background-color: v.$blanco;
+    padding: 5rem 5rem 10rem 5rem;
+    width: 50rem;
+    height: 50rem;
+    border-radius: 0.5rem;
+    .field{
+        display: flex;
+        flex-direction: column;
+        margin: 5rem 0rem;
+        
+
+        input{
+            padding: 1.2rem 1rem;
+            border-radius: 0.3rem;
+            border: 1px solid #8692A6;
+            max-width: 50rem;
+        }
+
+        label{
+            color: #696F79;
+            font-size: 1.6rem;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .title{
+        display: block;
+        text-align: center;
+        font-size: 2.4rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+    }
+
+    .button{
+        margin-top: 5rem;
+        @include m.boton(v.$azul, v.$blanco)
+    }
+}

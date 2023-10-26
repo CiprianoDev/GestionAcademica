@@ -1,0 +1,27 @@
+@use 'base/variables' as v;
+.main-container{
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    
+}
+
+.image{
+    display: grid;
+    place-items: center;
+    padding: 10rem;
+    img{
+        max-width: 40rem;
+    }
+    height: 73rem;
+    
+}
+
+.login{
+    height: 100%;
+    background-color: v.$azul;
+    
+    display: grid;
+    place-items: center;
+}
+
