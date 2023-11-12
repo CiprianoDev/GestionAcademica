@@ -3,5 +3,3 @@
 
 # Composer dependencies
 /vendor
-
-includes/database.php
