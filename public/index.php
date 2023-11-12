@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\CourseController;
 use Controllers\LoginController;
 use MVC\Router;
 $router = new Router();
@@ -14,6 +15,9 @@ $router->post('/', [LoginController::class,'index']);
 //Dashboard
 
 $router->get('/dashboard', [LoginController::class,'dashboard']);
+
+// Courses
+$router->get('/courses', [CourseController::class, 'courses']);
 
 // Check and validate the routes, ensuring their existence and assigning them the Controller functions
 $router->checkRoutes();
