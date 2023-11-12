@@ -19,7 +19,7 @@ class LoginController {
                 
                 if ($userExist) {
                     $userEnteredPassword = $user->password;
-                    $correctPassword = $userExist->comparePassword($userEnteredPassword);
+                    $correctPassword = $user->comparePassword($userEnteredPassword);
 
                     if ($correctPassword) {
                         header('Location: /dashboard');
