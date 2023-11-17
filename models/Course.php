@@ -46,6 +46,12 @@ class Course extends ActiveRecord {
 
     public function getCourses() {
         $allCourses = $this->all();
-        debuguear($allCourses);
+        //debuguear($allCourses);
+        return $allCourses;
+    }
+
+    public function getCourse(string $column, string $value) {
+        $dataCourse = $this->where($column, $value);
+        return $dataCourse;
     }
 }
