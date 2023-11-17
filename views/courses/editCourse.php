@@ -44,7 +44,7 @@
                 <input type="text" name="type" id="type" value="<?= $type; ?>">
             </div>
 
-            <input type="submit" class="button" value="Iniciar Sesión">
+            <input type="submit" class="button" value="Editar">
         </form>
     </div>
 </main>
