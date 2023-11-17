@@ -33,7 +33,6 @@ class CourseController {
         $course = new Course();
         $folioCourse = $_GET['course'];
         
-        //$alerts = Course::getAlerts();
         $dataCourse = get_object_vars($course->getCourse('folio', $folioCourse));
         $router->renderView('courses/editCourse', [
             'folio' => $dataCourse['folio'],

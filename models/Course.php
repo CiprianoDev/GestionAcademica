@@ -46,7 +46,6 @@ class Course extends ActiveRecord {
 
     public function getCourses() {
         $allCourses = $this->all();
-        //debuguear($allCourses);
         return $allCourses;
     }
 

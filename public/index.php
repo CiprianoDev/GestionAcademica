@@ -18,6 +18,7 @@ $router->get('/dashboard', [LoginController::class,'dashboard']);
 
 // Courses
 $router->get('/courses', [CourseController::class, 'courses']);
+
 $router->get('/edit-course', [CourseController::class, 'getCourse']);
 $router->post('/edit-course', [CourseController::class, 'editCourse']);
 
