@@ -29,12 +29,29 @@ class CourseController {
         }
     }
     
+    public static function getCourse(Router $router) {
+        $course = new Course();
+        $folioCourse = $_GET['course'];
+        
+        //$alerts = Course::getAlerts();
+        $dataCourse = get_object_vars($course->getCourse('folio', $folioCourse));
+        $router->renderView('courses/editCourse', [
+            'folio' => $dataCourse['folio'],
+            'name' => $dataCourse['name'],
+            'instructor' => $dataCourse['instructor'],
+            'totalHours' => $dataCourse['totalHours'],
+            'startDate' => $dataCourse['startDate'],
+            'finishDate' => $dataCourse['finishDate'],
+            'period' => $dataCourse['period'],
+            'classroom' => $dataCourse['classroom'],
+            'type' => $dataCourse['type']
+        ]);
+        //debuguear($dataCourse);
+    }
+
     public static function editCourse() {
         $course = new Course();
-        //debuguear($_GET);
-        $folioCourse = $_GET['course'];
-
-        debuguear($course->getCourse('folio', $folioCourse));
-        //echo "Result: " . ActiveRecord::where('folio', $folioCourse);
+        $result = $course->editCourse();
+        debuguear($result);
     }
 }

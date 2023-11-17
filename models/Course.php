@@ -54,4 +54,9 @@ class Course extends ActiveRecord {
         $dataCourse = $this->where($column, $value);
         return $dataCourse;
     }
+
+    public function editCourse() {
+        $result = $this->update('folio', $_POST);
+        return $result;
+    }
 }

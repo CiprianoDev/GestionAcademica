@@ -18,7 +18,8 @@ $router->get('/dashboard', [LoginController::class,'dashboard']);
 
 // Courses
 $router->get('/courses', [CourseController::class, 'courses']);
-$router->get('/edit-course', [CourseController::class, 'editCourse']);
+$router->get('/edit-course', [CourseController::class, 'getCourse']);
+$router->post('/edit-course', [CourseController::class, 'editCourse']);
 
 // Check and validate the routes, ensuring their existence and assigning them the Controller functions
 $router->checkRoutes();
