@@ -117,8 +117,8 @@ class ActiveRecord {
     }
 
     // Delete a record - Takes the Active Record's ID
-    public function delete() {
-        $query = "DELETE FROM " . static::$table . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+    public function delete($column, $value) {
+        $query = "DELETE FROM " . static::$table . " WHERE $column = '" . self::$db->escape_string($value) . "' LIMIT 1";
         $result = self::$db->query($query);
         return $result;
     }

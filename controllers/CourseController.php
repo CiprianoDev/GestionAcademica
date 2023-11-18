@@ -8,25 +8,29 @@ use MVC\Router;
 
 class CourseController {
 
-    public static function courses() {
+    public static function courses(Router $router) {
         //echo "Courses";
-        self::showCourses();
         
+        $router->renderView('courses/courses', [
+            'allCourses' => self::showCourses()
+        ]);
     }
 
     public static function showCourses() {
         $course = new Course();
         $allCourses = $course->getCourses();
+
+        return $allCourses;
         
-        for ($i=0; $i < count($allCourses); $i++) { 
-            $dataCourse = get_object_vars($allCourses[$i]);
-            $folioCourse = $dataCourse['folio'];
+        // for ($i=0; $i < count($allCourses); $i++) { 
+        //     $dataCourse = get_object_vars($allCourses[$i]);
+        //     $folioCourse = $dataCourse['folio'];
             
-            echo "Nombre curso: " . $dataCourse['name'];
-            echo "<a href='/edit-course?course=$folioCourse'>Editar</a>";
-            echo "<a href='/delete-course?course=$folioCourse'>Eliminar</a>";
-            echo "<br><br>";
-        }
+        //     echo "Nombre curso: " . $dataCourse['name'];
+        //     echo "<a href='/edit-course?course=$folioCourse'>Editar</a>";
+        //     echo "<a href='/delete-course?course=$folioCourse'>Eliminar</a>";
+        //     echo "<br><br>";
+        // }
     }
     
     public static function getCourse(Router $router) {
@@ -50,7 +54,23 @@ class CourseController {
 
     public static function editCourse() {
         $course = new Course();
-        $result = $course->editCourse();
-        debuguear($result);
+        $folio = $_POST['folio'];
+        $result = $course->editCourse('folio', $_POST);
+
+        if ($result) {
+            header("Location: /edit-course?course=$folio");
+        }
+        //debuguear($result);
+    }
+
+    public static function deleteCourse() {
+        $course = new Course();
+        $folio = $_POST['folio'];
+        $result = $course->deleteCourse('folio', $folio);
+
+
+        if ($result) {
+            header("Location: /courses");
+        }
     }
 }

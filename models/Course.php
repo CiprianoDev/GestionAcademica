@@ -54,8 +54,13 @@ class Course extends ActiveRecord {
         return $dataCourse;
     }
 
-    public function editCourse() {
-        $result = $this->update('folio', $_POST);
+    public function editCourse($column, $data) {
+        $result = $this->update($column, $data);
+        return $result;
+    }
+
+    public function deleteCourse($column, $value) {
+        $result = $this->delete($column, $value);
         return $result;
     }
 }
