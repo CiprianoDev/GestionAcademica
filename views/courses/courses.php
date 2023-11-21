@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="build/css/menu.css">
 <style>
     h1 {
         margin-top: 40px;
@@ -8,23 +7,58 @@
         font-weight: 500;
         word-wrap: break-word;
     }
+    /* Options */
+    .options {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .search {
+        display: flex;
+        gap: 30px;
+    }
+    .search-bar {
+        width: 400px;
+        height: 50px;
+        display: flex;
+    }
+    .search-input {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #000;
+        border-radius: 20px;
+        padding: 5px 20px;
+    }
+    .icon {
+        width: 32px;
+    }
+    .icon-search {
+        margin-left: -50px;
+    }
+    .icon-add {
+        width: 28px;
+    }
     .btn-add {
-        width: 200px;
-        height: 65px;
+        width: 180px;
+        height: 55px;
         background-color: #C3D3EE;
         color: #000;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         flex-shrink: 0;
         border: none;
         border-radius: 10px;
         cursor: pointer;
+        font-size: 1.2em;
+        padding: 0 30px;
     }
     .btn-add:hover {
-        background-color: #0047BA;
-        color: #fff;
+        background-color: rgba(0, 71, 186, .4);
     }
+    /* Table */
     table {
         display: flex;
         width: auto;
@@ -87,9 +121,21 @@
     <main class="content">
         <h1>Sistema</h1>
         <div class="options">
-            <!-- <button class="btn-add"> -->
-                <a href="/create-course" class="btn-add">Agregar</a>
-            <!-- </button> -->
+            <div class="search">
+                <img src="build/img/icon_filter.svg" alt="Icono Filtrar" class="icon">
+                <form action="#">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="Buscar curso...">
+                        <img src="build/img/icon_search.svg" alt="Icono búsqueda" class="icon icon-search">
+                    </div>
+                </form>
+            </div>
+            <div>
+                <a href="/create-course" class="btn-add">
+                    <img src="build/img/icon_add.svg" alt="Icono Agregar" class="icon">
+                    Agregar
+                </a>
+            </div>
         </div>
         <table>
             <thead>
