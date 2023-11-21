@@ -8,13 +8,11 @@
         <h1>Sistema</h1>
         <div class="contenedor">
 
-        <?php $alerts; ?>
-            
         <form action="/edit-course" class="form" method="post" >
                 <label class="title">Editar Curso</label>
                 <input type="text" name="folio" value="<?= $folio; ?>" hidden>
 
-                <!-- <?php include_once __DIR__ . "/../templates/alerts.php" ?> -->
+                <?php include_once __DIR__ . "/../templates/alerts.php" ?>
                 <div class="field">
                     <label for="folio">Folio:</label>
                     <input type="text" name="folio" id="folio" value="<?= $folio; ?>" disabled>
