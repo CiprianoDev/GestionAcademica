@@ -70,7 +70,37 @@ class CourseController {
 
 
         if ($result) {
-            header("Location: /courses");
+            header('Location: /courses');
         }
+    }
+
+    public static function createCourse(Router $router) {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $router->renderView('courses/createCourse');
+            return;
+        }
+
+        $curso = new Course();
+        $dataCourse = $_POST;
+        $result = $curso->createCourse($dataCourse);
+
+        if ($result) {
+            header('Location: /courses');
+        }
+        
+        Course::setAlert('error', 'Ha ocurrido un error al crear el curso');
+        $alerts = Course::getAlerts();
+        $router->renderView('courses/createCourse',[
+            'alerts' => $alerts,
+            'folio' => $dataCourse['folio'],
+            'name' => $dataCourse['name'],
+            'instructor' => $dataCourse['instructor'],
+            'totalHours' => $dataCourse['totalHours'],
+            'startDate' => $dataCourse['startDate'],
+            'finishDate' => $dataCourse['finishDate'],
+            'period' => $dataCourse['period'],
+            'classroom' => $dataCourse['classroom'],
+            'typeC' => $dataCourse['type']
+        ]);
     }
 }

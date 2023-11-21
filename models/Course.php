@@ -63,4 +63,14 @@ class Course extends ActiveRecord {
         $result = $this->delete($column, $value);
         return $result;
     }
+
+    public function createCourse($data) {
+        $this->sync($data);
+        try {
+            $result = $this->create();
+        } catch (\Throwable $th) {
+            return false;
+        }
+        return $result;
+    }
 }

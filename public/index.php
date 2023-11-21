@@ -21,6 +21,8 @@ $router->get('/courses', [CourseController::class, 'courses']);
 $router->get('/edit-course', [CourseController::class, 'getCourse']);
 $router->post('/edit-course', [CourseController::class, 'editCourse']);
 $router->post('/delete-course', [CourseController::class, 'deleteCourse']);
+$router->get('/create-course', [CourseController::class, 'createCourse']);
+$router->post('/create-course', [CourseController::class, 'createCourse']);
 
 // Check and validate the routes, ensuring their existence and assigning them the Controller functions
 $router->checkRoutes();
