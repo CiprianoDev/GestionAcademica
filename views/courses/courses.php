@@ -1,5 +1,30 @@
 <link rel="stylesheet" href="build/css/menu.css">
 <style>
+    h1 {
+        margin-top: 40px;
+        color: #000;
+        font-size: 48px;
+        font-family: Inter;
+        font-weight: 500;
+        word-wrap: break-word;
+    }
+    .btn-add {
+        width: 200px;
+        height: 65px;
+        background-color: #C3D3EE;
+        color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    .btn-add:hover {
+        background-color: #0047BA;
+        color: #fff;
+    }
     table {
         display: flex;
         width: auto;
@@ -7,6 +32,7 @@
         flex-direction: column;
         align-items: flex-start;
         flex-shrink: 0;
+        margin-top: 50px;
     }
     thead > tr {
         display: flex;
@@ -59,6 +85,12 @@
     <?php include_once __DIR__ . '/../templates/menu.php'; ?>
 
     <main class="content">
+        <h1>Sistema</h1>
+        <div class="options">
+            <!-- <button class="btn-add"> -->
+                <a href="/create-course" class="btn-add">Agregar</a>
+            <!-- </button> -->
+        </div>
         <table>
             <thead>
                 <tr>

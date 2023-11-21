@@ -2,10 +2,65 @@
     display: flex;
 }
 
+.logo_tec {
+    height: 80px;
+    margin-top: 30px;
+}
+
 aside {
-    width: 300px;
+    width: 330px;
+    height: 100vh;
     background-color: #F1F2F7;
-    display: inline;
-    padding: 25px 30px;
     margin-right: 50px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+nav > ul {
+    margin-top: 30px;
+}
+
+.icon {
+    height: 48px;
+    width: 50px;
+}
+
+.link_item {
+    list-style: none;
+    width: 260px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    margin-bottom: 2px;
+}
+
+.link_item > a {
+    width: 100%;
+}
+
+.link_item:hover {
+    background-color: #C3D3EE;
+}
+
+.link {
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.link > p {
+    font-size: 24px;
+    color: #000;
+}
+
+.selected {
+    background-color: #C3D3EE;
+    border-radius: 20px;
 }
