@@ -2,8 +2,6 @@
 
 namespace Models;
 
-use DateTime;
-
 class Course extends ActiveRecord {
 
     protected static $table = 'courses';

@@ -2,15 +2,12 @@
 
 namespace Controllers;
 
-use Models\ActiveRecord;
 use Models\Course;
 use MVC\Router;
 
 class CourseController {
 
     public static function courses(Router $router) {
-        //echo "Courses";
-        
         $router->renderView('courses/courses', [
             'allCourses' => self::showCourses()
         ]);
@@ -21,16 +18,6 @@ class CourseController {
         $allCourses = $course->getCourses();
 
         return $allCourses;
-        
-        // for ($i=0; $i < count($allCourses); $i++) { 
-        //     $dataCourse = get_object_vars($allCourses[$i]);
-        //     $folioCourse = $dataCourse['folio'];
-            
-        //     echo "Nombre curso: " . $dataCourse['name'];
-        //     echo "<a href='/edit-course?course=$folioCourse'>Editar</a>";
-        //     echo "<a href='/delete-course?course=$folioCourse'>Eliminar</a>";
-        //     echo "<br><br>";
-        // }
     }
     
     public static function getCourse(Router $router) {
@@ -47,20 +34,17 @@ class CourseController {
             'finishDate' => $dataCourse['finishDate'],
             'period' => $dataCourse['period'],
             'classroom' => $dataCourse['classroom'],
-            'type' => $dataCourse['type']
+            'typeC' => $dataCourse['type']
         ]);
-        //debuguear($dataCourse);
     }
 
     public static function editCourse() {
         $course = new Course();
-        $folio = $_POST['folio'];
         $result = $course->editCourse('folio', $_POST);
 
         if ($result) {
-            header("Location: /edit-course?course=$folio");
+            header("Location: /courses");
         }
-        //debuguear($result);
     }
 
     public static function deleteCourse() {
