@@ -20,3 +20,9 @@ h1 {
 .form {
     height: auto;
 }
+
+select {
+    padding: 1.2rem 1rem;
+    background-color: #fff;
+    border: 1px solid #8692a6;
+}
