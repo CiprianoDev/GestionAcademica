@@ -2,8 +2,6 @@
 
 namespace Models;
 
-use DateTime;
-
 class Course extends ActiveRecord {
 
     protected static $table = 'courses';
@@ -54,8 +52,23 @@ class Course extends ActiveRecord {
         return $dataCourse;
     }
 
-    public function editCourse() {
-        $result = $this->update('folio', $_POST);
+    public function editCourse($column, $data) {
+        $result = $this->update($column, $data);
+        return $result;
+    }
+
+    public function deleteCourse($column, $value) {
+        $result = $this->delete($column, $value);
+        return $result;
+    }
+
+    public function createCourse($data) {
+        $this->sync($data);
+        try {
+            $result = $this->create();
+        } catch (\Throwable $th) {
+            return false;
+        }
         return $result;
     }
 }
