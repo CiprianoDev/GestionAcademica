@@ -39,7 +39,8 @@ class LoginController {
         ]);
     }
 
-    public static function dashboard(){
-        echo 'EN DESARROLLO PORQUE EL SCRUM MASTER NO NOS HA PAGAGADO';
+    public static function dashboard(Router $router){
+        $router->renderView('dashboard/dashboard',[
+        ]);
     }
 }

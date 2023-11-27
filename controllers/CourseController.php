@@ -75,16 +75,16 @@ class CourseController {
         Course::setAlert('error', 'Ha ocurrido un error al crear el curso');
         $alerts = Course::getAlerts();
         $router->renderView('courses/createCourse',[
-            'alerts' => $alerts,
-            'folio' => $dataCourse['folio'],
-            'name' => $dataCourse['name'],
-            'instructor' => $dataCourse['instructor'],
-            'totalHours' => $dataCourse['totalHours'],
-            'startDate' => $dataCourse['startDate'],
-            'finishDate' => $dataCourse['finishDate'],
-            'period' => $dataCourse['period'],
-            'classroom' => $dataCourse['classroom'],
-            'typeC' => $dataCourse['type']
+            'alerts' => $alerts ,
+            'folio' => $dataCourse['folio'] ,
+            'name' => $dataCourse['name'] ,
+            'instructor' => $dataCourse['instructor'] ,
+            'totalHours' => $dataCourse['totalHours'] ,
+            'startDate' => $dataCourse['startDate'] ,
+            'finishDate' => $dataCourse['finishDate'] ,
+            'period' => $dataCourse['period'] ,
+            'classroom' => $dataCourse['classroom'] ,
+            'typeC' => $dataCourse['type'] 
         ]);
     }
 }

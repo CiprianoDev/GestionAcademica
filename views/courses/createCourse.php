@@ -22,43 +22,43 @@ $cursoActualizacion = "Curso de actualización";
 
                 <div class="field">
                     <label for="folio">Folio:</label>
-                    <input type="text" name="folio" id="folio" value="<?= $folio ?>">
+                    <input type="text" name="folio" id="folio" value="<?= $folio ?? ''?>">
                 </div>
                 <div class="field">
                     <label for="name">Nombre del curso:</label>
-                    <input type="text" name="name" id="name" value="<?= $name ?>">
+                    <input type="text" name="name" id="name" value="<?= $name ?? ''?>">
                 </div>
                 <div class="field">
                     <label for="instructor">Instructor:</label>
-                    <input type="text" name="instructor" id="instructor" value="<?= $instructor ?>">
+                    <input type="text" name="instructor" id="instructor" value="<?= $instructor ?? ''?>">
                 </div>
                 <div class="field">
                     <label for="totalHours">Horas:</label>
-                    <input type="number" name="totalHours" id="totalHours" value="<?= $totalHours ?>">
+                    <input type="number" name="totalHours" id="totalHours" value="<?= $totalHours ?? ''?>">
                 </div>
                 <div class="field">
                     <label for="startDate">Fecha de inicio:</label>
-                    <input type="date" name="startDate" id="startDate" value="<?= $startDate ?>">
+                    <input type="date" name="startDate" id="startDate" value="<?= $startDate ?? ''?>">
                 </div>
                 <div class="field">
                     <label for="finishDate">Fecha de fin:</label>
-                    <input type="date" name="finishDate" id="finishDate" value="<?= $finishDate ?>">
+                    <input type="date" name="finishDate" id="finishDate" value="<?= $finishDate ?? ''?>">
                 </div>
                 <div class="field">
                     <label for="period">Periodo:</label>
-                    <input type="text" name="period" id="period" value="<?= $period ?>">
+                    <input type="text" name="period" id="period" value="<?= $period ?? ''?>">
                 </div>
                 <div class="field">
                     <label for="classroom">Aula:</label>
                     <select name="classroom" id="classroom">
-                        <option value="A1" <?php if ("A1" == $classroom) {?> selected <?php }?>>A1</option>
-                        <option value="A2" <?php if ("A2" == $classroom) {?> selected <?php }?>>A2</option>
-                        <option value="A3" <?php if ("A3" == $classroom) {?> selected <?php }?>>A3</option>
-                        <option value="A4" <?php if ("A4" == $classroom) {?> selected <?php }?>>A4</option>
-                        <option value="A5" <?php if ("A5" == $classroom) {?> selected <?php }?>>A5</option>
-                        <option value="A6" <?php if ("A6" == $classroom) {?> selected <?php }?>>A6</option>
-                        <option value="A7" <?php if ("A7" == $classroom) {?> selected <?php }?>>A7</option>
-                        <option value="A8" <?php if ("A8" == $classroom) {?> selected <?php }?>>A8</option>
+                        <option value="A1" <?php if ("A1" == $classroom ?? '') {?> selected <?php }?>>A1</option>
+                        <option value="A3" <?php if ("A3" == $classroom ?? '') {?> selected <?php }?>>A3</option>
+                        <option value="A2" <?php if ("A2" == $classroom ?? '') {?> selected <?php }?>>A2</option>
+                        <option value="A4" <?php if ("A4" == $classroom ?? '') {?> selected <?php }?>>A4</option>
+                        <option value="A5" <?php if ("A5" == $classroom ?? '') {?> selected <?php }?>>A5</option>
+                        <option value="A6" <?php if ("A6" == $classroom ?? '') {?> selected <?php }?>>A6</option>
+                        <option value="A7" <?php if ("A7" == $classroom ?? '') {?> selected <?php }?>>A7</option>
+                        <option value="A8" <?php if ("A8" == $classroom ?? '') {?> selected <?php }?>>A8</option>
                         <option value="Laboratorio de redes" <?php if ("Laboratorio de redes" == $classroom) {?> selected <?php }?>>Laboratorio de redes</option>
                     </select>
                     <!-- <input type="text" name="classroom" id="classroom" value="<?= $classroom ?>"> -->
