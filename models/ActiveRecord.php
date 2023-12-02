@@ -97,21 +97,24 @@ class ActiveRecord {
         ];
     }
 
-    public function update($column, $data) {
+    public function update()
+    {
         // Sanitize data
         $attributes = $this->sanitizeAttributes();
 
         // Iterate to add each field to the database
         $values = [];
         foreach ($attributes as $key => $value) {
-            $values[] = "{$key}='{$data[$key]}'";
+            $values[] = "{$key}='{$value}'";
         }
 
+        // SQL query
         $query = "UPDATE " . static::$table . " SET ";
-        $query .= join(', ', $values);
-        $query .= " WHERE $column = '" . self::$db->escape_string($data[$column]) . "'";
-        $query .= " LIMIT 1";
+        $query .=  join(', ', $values);
+        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " LIMIT 1 ";
 
+        // Update the database
         $result = self::$db->query($query);
         return $result;
     }
