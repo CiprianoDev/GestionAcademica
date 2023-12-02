@@ -20,31 +20,44 @@ class CourseController {
         return $allCourses;
     }
     
-    public static function getCourse(Router $router) {
-        $course = new Course();
-        $folioCourse = $_GET['course'];
+
+    public static function editCourse(Router $router) {
+        $folio = s($_GET['course']);
+        $alerts = [];
+
+        if(!$folio) header('Location: /courses');
         
-        $dataCourse = get_object_vars($course->getCourse('folio', $folioCourse));
-        $router->renderView('courses/editCourse', [
-            'folio' => $dataCourse['folio'],
-            'name' => $dataCourse['name'],
-            'instructor' => $dataCourse['instructor'],
-            'totalHours' => $dataCourse['totalHours'],
-            'startDate' => $dataCourse['startDate'],
-            'finishDate' => $dataCourse['finishDate'],
-            'period' => $dataCourse['period'],
-            'classroom' => $dataCourse['classroom'],
-            'typeC' => $dataCourse['type']
-        ]);
-    }
 
-    public static function editCourse() {
-        $course = new Course();
-        $result = $course->editCourse('folio', $_POST);
+        $course = Course::where('folio', $folio);
 
-        if ($result) {
-            header("Location: /courses");
+        if(!$course) header('Location: /courses');
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            $course->sync($_POST);
+            
+            $alerts = $course->validate();
+
+            if(empty($alerts)){
+                
+                $result = $course->save();
+
+                if($result){
+                    header('Location: /courses');
+                }
+
+                $alerts = Course::setAlert('error','Ocurrio un error al actualizar el curso');
+                
+            }
+            
         }
+
+        $alerts = Course::getAlerts();
+
+        $router->renderView('courses/editCourse',[
+            'alerts' => $alerts,
+            'course' => $course
+        ]);
     }
 
     public static function deleteCourse() {
