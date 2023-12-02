@@ -51,22 +51,22 @@ $cursoActualizacion = "Curso de actualización";
                 <div class="field">
                     <label for="classroom">Aula:</label>
                     <select name="classroom" id="classroom">
-                        <option value="A1" <?php if ("A1" == $classroom) {?> selected <?php }?>>A1</option>
-                        <option value="A2" <?php if ("A2" == $classroom) {?> selected <?php }?>>A2</option>
-                        <option value="A3" <?php if ("A3" == $classroom) {?> selected <?php }?>>A3</option>
-                        <option value="A4" <?php if ("A4" == $classroom) {?> selected <?php }?>>A4</option>
-                        <option value="A5" <?php if ("A5" == $classroom) {?> selected <?php }?>>A5</option>
-                        <option value="A6" <?php if ("A6" == $classroom) {?> selected <?php }?>>A6</option>
-                        <option value="A7" <?php if ("A7" == $classroom) {?> selected <?php }?>>A7</option>
-                        <option value="A8" <?php if ("A8" == $classroom) {?> selected <?php }?>>A8</option>
-                        <option value="Laboratorio de redes" <?php if ("Laboratorio de redes" == $classroom) {?> selected <?php }?>>Laboratorio de redes</option>
+                        <option value="A1" <?php if ("A1" == $course->classroom) {?> selected <?php }?>>A1</option>
+                        <option value="A2" <?php if ("A2" == $course->classroom) {?> selected <?php }?>>A2</option>
+                        <option value="A3" <?php if ("A3" == $course->classroom) {?> selected <?php }?>>A3</option>
+                        <option value="A4" <?php if ("A4" == $course->classroom) {?> selected <?php }?>>A4</option>
+                        <option value="A5" <?php if ("A5" == $course->classroom) {?> selected <?php }?>>A5</option>
+                        <option value="A6" <?php if ("A6" == $course->classroom) {?> selected <?php }?>>A6</option>
+                        <option value="A7" <?php if ("A7" == $course->classroom) {?> selected <?php }?>>A7</option>
+                        <option value="A8" <?php if ("A8" == $course->classroom) {?> selected <?php }?>>A8</option>
+                        <option value="Laboratorio de redes" <?php if ("Laboratorio de redes" == $course->classroom) {?> selected <?php }?>>Laboratorio de redes</option>
                     </select>
                 </div>
                 <div class="field">
                     <label for="type">Tipo:</label>
                     <select name="type" id="type">
-                        <option value="<?= $cursoFormacion; ?>" <?php if ($cursoFormacion == $typeC) {?> selected <?php }?>>Curso de formación académica</option>
-                        <option value="<?= $cursoActualizacion; ?>" <?php if ($cursoActualizacion == $typeC) {?> selected <?php }?>>Curso de actualización</option>
+                        <option value="<?= $cursoFormacion; ?>" <?php if ($cursoFormacion == $course->type) {?> selected <?php }?>>Curso de formación académica</option>
+                        <option value="<?= $cursoActualizacion; ?>" <?php if ($cursoActualizacion == $course->type) {?> selected <?php }?>>Curso de actualización</option>
                     </select>
                 </div>
 

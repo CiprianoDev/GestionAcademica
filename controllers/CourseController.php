@@ -29,6 +29,7 @@ class CourseController {
         
 
         $course = Course::where('folio', $folio);
+        
 
         if(!$course) header('Location: /courses');
 
