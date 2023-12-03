@@ -12,6 +12,15 @@ class TeacherController
     {
         $allTeachers = Teacher::all();
 
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $teacherToSearch = $_POST['teacher'];
+
+            if (!$teacherToSearch) header('Location: /courses');
+
+            $searchResult = Teacher::search($teacherToSearch);
+            $allTeachers = $searchResult;
+        }
+
         $router->renderView('teachers/teacher', [
             'allTeachers' => $allTeachers
         ]);
@@ -61,7 +70,6 @@ class TeacherController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $teacher->sync($_POST);
-            //debuguear($teacher);
             $alerts = $teacher->validate();
 
             if (empty($alerts)) {

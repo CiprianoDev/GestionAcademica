@@ -56,6 +56,13 @@ class ActiveRecord {
         return array_shift($result);
     }
 
+    // Find a record by name using like sentence
+    public static function search($name) {
+        $query = "SELECT * FROM " . static::$table . " WHERE name LIKE '%$name%'";
+        $result = self::querySQL($query);
+        return $result;
+    }
+
     // Get Record
     public static function get($limit) {
         $query = "SELECT * FROM " . static::$table . " LIMIT $limit";
