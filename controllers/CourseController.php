@@ -3,13 +3,23 @@
 namespace Controllers;
 
 use Models\Course;
+use Models\Teacher;
 use MVC\Router;
 
 class CourseController {
 
     public static function courses(Router $router) {
-        $router->renderView('courses/courses', [
-            'allCourses' => self::showCourses()
+        if (count($_GET) == 0) {
+            $router->renderView('courses/courses', [
+                'allCourses' => self::showCourses()
+            ]);
+        }
+
+        $course = get_object_vars(Course::where('folio', $_GET['course']));
+        $teachers = Teacher::all();
+        $router->renderView('courses/addTeacher', [
+            'course' => $course,
+            'teachers' => $teachers
         ]);
     }
 
