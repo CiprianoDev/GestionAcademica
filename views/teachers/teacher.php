@@ -123,9 +123,9 @@
         <div class="options">
             <div class="search">
                 <img src="build/img/icon_filter.svg" alt="Icono Filtrar" class="icon">
-                <form action="#">
+                <form method="post">
                     <div class="search-bar">
-                        <input type="text" class="search-input" placeholder="Buscar Profesor...">
+                        <input name="teacher" type="text" class="search-input" placeholder="Buscar Profesor...">
                         <img src="build/img/icon_search.svg" alt="Icono búsqueda" class="icon icon-search">
                     </div>
                 </form>
