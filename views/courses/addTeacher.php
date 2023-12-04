@@ -99,6 +99,7 @@
 
 <div class="container">
     <?php include_once __DIR__ . '/../templates/menu.php'; ?>
+    <?php $nameTeachersEnrolled = []; ?>
 
     <main class="content">
         <h1>Sistema</h1>
@@ -113,10 +114,12 @@
         <p><strong>Tipo de curso:</strong> <?= $course['type']; ?></p>
         <p><strong>Profesores inscritos:</strong></p>
         <ol>
-            <?php foreach($history as $historyObject): ?>
-                <?php $historyData = get_object_vars($historyObject) ?>
+            <?php foreach($history as $historyObject) {
+                $historyData = get_object_vars($historyObject); 
+                array_push($nameTeachersEnrolled, $historyData['name']);
+            ?>
                 <li><?= $historyData['name']; ?></li>
-            <?php endforeach; ?>
+            <?php } ?>
         </ol>
         <div class="options">
             <div class="search">
@@ -138,8 +141,16 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($teachers as $teacherObject) { 
-                    $teacher = get_object_vars($teacherObject);
+                <?php 
+                $nameAllTeachers = [];
+                $diff = array_diff($nameAllTeachers, $nameTeachersEnrolled);
+                    foreach($teachers as $teacherObject) {
+                        $teacher = get_object_vars($teacherObject);
+                        $equals = false;
+                            if (array_search($teacher['name'], $nameTeachersEnrolled)) {
+                                $equals = true;
+                                continue;
+                            }
                 ?>
                     <tr>
                         <td class="first-column"><?= $teacher['name'] ?></td>
