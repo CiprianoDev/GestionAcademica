@@ -17,9 +17,9 @@
                 <input type="password" name="password">
             </div>
 
-            <div class="center">
-                <input type="submit" class="button with-100" value="Iniciar Sesión">
-            </div>
+           
+                <input type="submit" class="button" value="Iniciar Sesión">
+            
 
         </form>
     </div>
