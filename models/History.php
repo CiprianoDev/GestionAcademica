@@ -33,4 +33,9 @@ class History extends ActiveRecord {
         }
         return $result;
     }
+
+    public function getHistoryCourse($idCourse) {
+        $allHistory = $this->SQL("SELECT * FROM history AS H JOIN teachers as T ON H.idTeacher = T.id WHERE H.idCourse = $idCourse");
+        return $allHistory;
+    }
 }

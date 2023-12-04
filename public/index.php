@@ -26,6 +26,8 @@ $router->post('/edit-course', [CourseController::class, 'editCourse']);
 $router->post('/delete-course', [CourseController::class, 'deleteCourse']);
 $router->get('/create-course', [CourseController::class, 'createCourse']);
 $router->post('/create-course', [CourseController::class, 'createCourse']);
+$router->get('/course-info', [CourseController::class, 'courseInfo']);
+$router->post('/course-info', [CourseController::class, 'courseInfo']);
 $router->post('/add-teacher', [HistoryController::class, 'signTeacher']);
 
 //Teachers

@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Models\Course;
+use Models\History;
 use Models\Teacher;
 use MVC\Router;
 
@@ -23,6 +24,7 @@ class CourseController
             $searchResult = Course::search($courseToSearch);
             $allCourses = $searchResult;
         }
+
         $router->renderView('courses/courses', [
             'allCourses' => $allCourses
         ]);
@@ -34,6 +36,38 @@ class CourseController
         $allCourses = $course->getCourses();
 
         return $allCourses;
+    }
+
+    public static function courseInfo(Router $router) {
+        if (isset($_GET['course']) && !empty(isset($_GET['course']))) {
+            $courseFolio = $_GET['course'];
+            $historyCtrl = new HistoryController();
+            $history = $historyCtrl->getHistoryCourse($router, $courseFolio);
+            $course = get_object_vars(Course::where('folio', $courseFolio));
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $teacherToSearch = $_POST['teacher'];
+
+                if (!$teacherToSearch) header("Location: /course-info?course=$courseFolio");
+
+                $searchResult = Teacher::search($teacherToSearch);
+                $allTeachers = $searchResult;
+
+                $router->renderView('courses/addTeacher', [
+                    'course' => $course,
+                    'history' => $history,
+                    'teachers' => $allTeachers
+                ]);
+
+            }
+
+            $teachers = Teacher::all();
+            $router->renderView('courses/addTeacher', [
+                'course' => $course,
+                'history' => $history,
+                'teachers' => $teachers
+            ]);
+        }
     }
 
 

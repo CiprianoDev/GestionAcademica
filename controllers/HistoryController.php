@@ -25,6 +25,17 @@ class HistoryController {
         $history = new History();
         $history->addTeacherToCourse($values);
 
-        header("Location: /courses?course=" . get_object_vars($course)['folio']);
+        header("Location: /course-info?course=" . get_object_vars($course)['folio']);
+    }
+
+    public static function getHistoryCourse(Router $router, $folioCourse) {
+        $historyCourseObject = new History();
+        $courseObject = Course::where('folio', s($folioCourse));
+        
+        $courseInfo = get_object_vars($courseObject);
+        $idCourse = $courseInfo['id'];
+        
+        $historyInfo = $historyCourseObject->getHistoryCourse($idCourse);
+        return $historyInfo;
     }
 }

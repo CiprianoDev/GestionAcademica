@@ -154,9 +154,9 @@ class ActiveRecord {
         $object = new static;
 
         foreach ($record as $key => $value) {
-            if (property_exists($object, $key)) {
+            //if (property_exists($object, $key)) {
                 $object->$key = $value;
-            }
+            //}
         }
 
         return $object;
