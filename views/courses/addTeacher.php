@@ -92,6 +92,9 @@
         padding: 12px;
         cursor: pointer;
     }
+    p {
+        color: #000;
+    }
 </style>
 
 <div class="container">
@@ -100,13 +103,27 @@
     <main class="content">
         <h1>Sistema</h1>
 
-        <h2><?= $course['name']; ?></h2>
+        <h2>Nombre del curso: <?= $course['name']; ?></h2>
+        <h2>Folio: <?= $course['folio']; ?></h2>
+        <p><strong>Instructor:</strong> <?= $course['instructor']; ?></p>
+        <p><strong>Horas totales:</strong> <?= $course['totalHours']; ?></p>
+        <p><strong>Periodo:</strong> <?= $course['period']; ?></p>
+        <p><strong>Inicio-Fin del curso:</strong> <?= $course['startDate']; ?> - <?= $course['finishDate']; ?></p>
+        <p><strong>Aula:</strong> <?= $course['classroom']; ?></p>
+        <p><strong>Tipo de curso:</strong> <?= $course['type']; ?></p>
+        <p><strong>Profesores inscritos:</strong></p>
+        <ol>
+            <?php foreach($history as $historyObject): ?>
+                <?php $historyData = get_object_vars($historyObject) ?>
+                <li><?= $historyData['name']; ?></li>
+            <?php endforeach; ?>
+        </ol>
         <div class="options">
             <div class="search">
                 <img src="build/img/icon_filter.svg" alt="Icono Filtrar" class="icon">
-                <form action="#">
+                <form method="post">
                     <div class="search-bar">
-                        <input type="text" class="search-input" placeholder="Buscar curso...">
+                        <input type="text" class="search-input" name="teacher" placeholder="Buscar curso...">
                         <img src="build/img/icon_search.svg" alt="Icono búsqueda" class="icon icon-search">
                     </div>
                 </form>

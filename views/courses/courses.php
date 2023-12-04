@@ -154,7 +154,7 @@
             ?>
                 <tr>
                     <td class="first-column">
-                        <a href="/courses?course=<?= $dataCourse['folio'] ?>">
+                        <a href="/course-info?course=<?= $dataCourse['folio'] ?>">
                             <?= $dataCourse['name']; ?>
                         </a>
                     </td>
