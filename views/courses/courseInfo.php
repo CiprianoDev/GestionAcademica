@@ -12,13 +12,14 @@
         word-wrap: break-word;
     }
     h2 {
+        margin-top: 40px;
         color: #000;
         font-family: Inter;
         font-size: 30px;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
-        text-align: center;
+        text-align: left;
     }
     .options {
         width: 100%;
@@ -26,6 +27,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 50px;
     }
     .search {
         display: flex;
@@ -95,6 +97,14 @@
     p {
         color: #000;
     }
+    summary {
+        font-size: 2rem;
+    }
+    .teacher-name {
+        font-size: 1.8rem;
+        margin-top: 1em;
+        margin-left: 3em;
+    }
 </style>
 
 <div class="container">
@@ -102,31 +112,32 @@
     <?php $nameTeachersEnrolled = []; ?>
 
     <main class="content">
-        <h1>Sistema</h1>
 
-        <h2>Nombre del curso: <?= $course['name']; ?></h2>
-        <h2>Folio: <?= $course['folio']; ?></h2>
+        <h2><?= $course['name']; ?> (<?= $course['folio']; ?>)</h2>
         <p><strong>Instructor:</strong> <?= $course['instructor']; ?></p>
         <p><strong>Horas totales:</strong> <?= $course['totalHours']; ?></p>
         <p><strong>Periodo:</strong> <?= $course['period']; ?></p>
         <p><strong>Inicio-Fin del curso:</strong> <?= $course['startDate']; ?> - <?= $course['finishDate']; ?></p>
         <p><strong>Aula:</strong> <?= $course['classroom']; ?></p>
-        <p><strong>Tipo de curso:</strong> <?= $course['type']; ?></p>
-        <p><strong>Profesores inscritos:</strong></p>
-        <ol>
+        <p><strong>Tipo de curso:</strong> <?= $course['type']; ?></p>        
+        <details>
+            <summary class="enrolled"><strong>Profesores inscritos:</strong></summary>
             <?php foreach($history as $historyObject) {
                 $historyData = get_object_vars($historyObject); 
                 array_push($nameTeachersEnrolled, $historyData['name']);
-            ?>
-                <li><?= $historyData['name']; ?></li>
+                ?>
+                <li class="teacher-name">
+                    <?= $historyData['name']; ?>
+                </li>
             <?php } ?>
-        </ol>
+        </details>
+
         <div class="options">
             <div class="search">
                 <img src="build/img/icon_filter.svg" alt="Icono Filtrar" class="icon">
                 <form method="post">
                     <div class="search-bar">
-                        <input type="text" class="search-input" name="teacher" placeholder="Buscar curso...">
+                        <input type="text" class="search-input" name="teacher" placeholder="Buscar profesor...">
                         <img src="build/img/icon_search.svg" alt="Icono búsqueda" class="icon icon-search">
                     </div>
                 </form>
@@ -146,19 +157,17 @@
                 $diff = array_diff($nameAllTeachers, $nameTeachersEnrolled);
                     foreach($teachers as $teacherObject) {
                         $teacher = get_object_vars($teacherObject);
-                        $equals = false;
-                            if (array_search($teacher['name'], $nameTeachersEnrolled)) {
-                                $equals = true;
-                                continue;
-                            }
+                        if (array_search($teacher['name'], $nameTeachersEnrolled)) {
+                            continue;
+                        }
                 ?>
                     <tr>
                         <td class="first-column"><?= $teacher['name'] ?></td>
-                        <form action="/add-teacher" method="post">
+                        <form action="/enroll-teacher" method="post">
                             <td>
                                 <input type="hidden" name="teacher" value="<?= $teacher['payroll'] ?>">
                                 <input type="hidden" name="course" value="<?= $course['folio'] ?>">
-                                <button type="submit">Agregar</button>
+                                <button type="submit">Inscribir</button>
                             </td>
                         </form>
                     </tr>

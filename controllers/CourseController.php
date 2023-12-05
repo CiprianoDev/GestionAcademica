@@ -53,7 +53,7 @@ class CourseController
                 $searchResult = Teacher::search($teacherToSearch);
                 $allTeachers = $searchResult;
 
-                $router->renderView('courses/addTeacher', [
+                $router->renderView('courses/courseInfo', [
                     'course' => $course,
                     'history' => $history,
                     'teachers' => $allTeachers
@@ -62,7 +62,7 @@ class CourseController
             }
 
             $teachers = Teacher::all();
-            $router->renderView('courses/addTeacher', [
+            $router->renderView('courses/courseInfo', [
                 'course' => $course,
                 'history' => $history,
                 'teachers' => $teachers
