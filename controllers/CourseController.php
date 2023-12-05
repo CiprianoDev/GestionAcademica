@@ -42,7 +42,7 @@ class CourseController
         if (isset($_GET['course']) && !empty(isset($_GET['course']))) {
             $courseFolio = $_GET['course'];
             $historyCtrl = new HistoryController();
-            $history = $historyCtrl->getHistoryCourse($router, $courseFolio);
+            $history = $historyCtrl->getHistoryCourse($courseFolio);
             $course = get_object_vars(Course::where('folio', $courseFolio));
 
             if($_SERVER['REQUEST_METHOD'] == 'POST') {

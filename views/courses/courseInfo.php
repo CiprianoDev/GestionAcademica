@@ -101,9 +101,28 @@
         font-size: 2rem;
     }
     .teacher-name {
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin-top: 1em;
         margin-left: 3em;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .delete-button {
+        background-color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    .btn-enroll {
+        background-color: #C3D3EE;
+        color: #000;
+        border: none;
+        padding: 1.5rem;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    .btn-enroll:hover {
+        background-color: rgba(0, 71, 186, .4);
     }
 </style>
 
@@ -126,9 +145,16 @@
                 $historyData = get_object_vars($historyObject); 
                 array_push($nameTeachersEnrolled, $historyData['name']);
                 ?>
-                <li class="teacher-name">
-                    <?= $historyData['name']; ?>
-                </li>
+                <form action="/undo-enroll" method="post">
+                    <p class="teacher-name">
+                        <input type="hidden" name="history" value="<?= $historyData['idHistory'] ?>">
+                        <input type="hidden" name="course" value="<?= $_GET['course']; ?>">
+                        <button type="submit" class="delete-button">
+                            <img src="build/img/icon_delete.svg" alt="Icono eliminar">
+                        </button>
+                        <?= $historyData['name']; ?>
+                    </p>
+                </form>
             <?php } ?>
         </details>
 
@@ -167,7 +193,7 @@
                             <td>
                                 <input type="hidden" name="teacher" value="<?= $teacher['payroll'] ?>">
                                 <input type="hidden" name="course" value="<?= $course['folio'] ?>">
-                                <button type="submit">Inscribir</button>
+                                <button type="submit" class="btn-enroll">Inscribir</button>
                             </td>
                         </form>
                     </tr>
