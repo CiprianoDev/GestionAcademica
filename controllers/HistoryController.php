@@ -9,7 +9,7 @@ use MVC\Router;
 
 class HistoryController {
 
-    public static function signTeacher(Router $router) {
+    public static function enrollTeacher(Router $router) {
         $teacher = Teacher::where('payroll', $_POST['teacher']);
         $course = Course::where('folio', $_POST['course']);
 
