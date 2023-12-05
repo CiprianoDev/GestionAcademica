@@ -21,7 +21,7 @@ function isAuth() : void {
 }
 
 // Seleccionar la opcion correcta en el menu
-function isSelected($requestURI, $uri) {
+function isItemMenuSelected($requestURI, $uri) {
     if (str_contains($requestURI, $uri)) {
         return "selected";
     }
