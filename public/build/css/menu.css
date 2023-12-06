@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.content {
+    margin-left: 380px;
+}
+
 .logo_tec {
     height: 80px;
     margin-top: 30px;
@@ -11,7 +15,7 @@ aside {
     width: 330px;
     height: 100vh;
     background-color: #F1F2F7;
-    margin-right: 50px;
+    position: fixed;
 }
 
 nav {

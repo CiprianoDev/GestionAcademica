@@ -3,8 +3,8 @@
         <img src="/build/img/logoGestion.png" alt="Logo Tec">
     </div>
     <div class="login">
-        
-        <form action="/" class="form" method="post" >
+
+        <form action="/" class="form" method="post">
             <label class="title">Iniciar Sesión</label>
 
             <?php include_once __DIR__ . "/../templates/alerts.php" ?>
@@ -17,7 +17,10 @@
                 <input type="password" name="password">
             </div>
 
-            <input type="submit" class="button" value="Iniciar Sesión">
+           
+                <input type="submit" class="button" value="Iniciar Sesión">
+            
+
         </form>
     </div>
 </main>

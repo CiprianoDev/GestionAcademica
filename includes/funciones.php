@@ -19,3 +19,10 @@ function isAuth() : void {
         header('Location: /');
     }
 }
+
+// Seleccionar la opcion correcta en el menu
+function isItemMenuSelected($requestURI, $uri) {
+    if (str_contains($requestURI, $uri)) {
+        return "selected";
+    }
+}

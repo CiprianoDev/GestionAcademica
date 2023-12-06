@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\CourseController;
+use Controllers\HistoryController;
 use Controllers\LoginController;
 use Controllers\TeacherController;
 use MVC\Router;
@@ -25,6 +26,10 @@ $router->post('/edit-course', [CourseController::class, 'editCourse']);
 $router->post('/delete-course', [CourseController::class, 'deleteCourse']);
 $router->get('/create-course', [CourseController::class, 'createCourse']);
 $router->post('/create-course', [CourseController::class, 'createCourse']);
+$router->get('/course-info', [CourseController::class, 'courseInfo']);
+$router->post('/course-info', [CourseController::class, 'courseInfo']);
+$router->post('/enroll-teacher', [HistoryController::class, 'enrollTeacher']);
+$router->post('/undo-enroll', [HistoryController::class, 'undoEnrollTeacher']);
 
 //Teachers
 $router->get('/teachers',[TeacherController::class,'teachers']);

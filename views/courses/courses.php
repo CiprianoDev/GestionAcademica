@@ -151,10 +151,13 @@
             <?php
                 foreach ($allCourses as $objectCourse) {
                     $dataCourse = get_object_vars($objectCourse);
-                    //debuguear($dataCourse);
             ?>
                 <tr>
-                    <td class="first-column"><?= $dataCourse['name']; ?></td>
+                    <td class="first-column">
+                        <a href="/course-info?course=<?= $dataCourse['folio'] ?>">
+                            <?= $dataCourse['name']; ?>
+                        </a>
+                    </td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
@@ -168,11 +171,8 @@
                             <form action="/delete-course" method="post">
                                 <input type="text" name="folio" value="<?= $dataCourse['folio'] ?>" hidden>
                                 <button type="submit" class="delete-button">
-                                    <!-- <a href=""> -->
-                                        <img src="build/img/icon_delete.svg" alt="Icono eliminar">
-                                    <!-- </a> -->
+                                    <img src="build/img/icon_delete.svg" alt="Icono eliminar">
                                 </button>
-                            
                             </form>
                         </p>
                     </td>

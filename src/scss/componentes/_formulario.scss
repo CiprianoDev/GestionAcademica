@@ -42,5 +42,16 @@
     .button{
         margin-top: 5rem;
         @include m.boton(v.$azul, v.$blanco)
+        
+    }
+
+    .columns{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 1rem;
+    }
+
+    &.width-100{
+        width: 100%
     }
 }
