@@ -149,12 +149,13 @@
             </thead>
             <tbody>
            <?php
+                $indice = 0;
                 foreach ($allTeachers as $teacher):
                     
             ?> 
                 <tr>
                     <td class="first-column"><?php echo $teacher->name;?></td>
-                    <td>0</td>
+                    <td><?= $teachersEnrolled[$indice] ?></td>
                     <td>0</td>
                     <td>0</td>
                     <td class="actions">
@@ -176,7 +177,10 @@
                         </p>
                     </td>
                 </tr>
-            <?php endforeach; ?> 
+            <?php 
+                $indice++;     
+            endforeach;
+            ?> 
             </tbody>
         </table>
     </main>

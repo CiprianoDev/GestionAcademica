@@ -141,7 +141,7 @@
             <thead>
                 <tr>
                     <th class="first-column">Nombre Curso</th>
-                    <th>Asistentes</th>
+                    <th>Inscritos</th>
                     <th>Acreditados</th>
                     <th>No acreditados</th>
                     <th>Acciones</th>
@@ -149,6 +149,7 @@
             </thead>
             <tbody>
             <?php
+                $indice = 0;
                 foreach ($allCourses as $objectCourse) {
                     $dataCourse = get_object_vars($objectCourse);
             ?>
@@ -158,7 +159,7 @@
                             <?= $dataCourse['name']; ?>
                         </a>
                     </td>
-                    <td>0</td>
+                    <td><?= $teachersEnrolled[$indice] ?></td>
                     <td>0</td>
                     <td>0</td>
                     <td class="actions">
@@ -177,7 +178,9 @@
                         </p>
                     </td>
                 </tr>
-            <?php } ?>
+            <?php 
+                $indice++;
+            } ?>
             </tbody>
         </table>
     </main>
