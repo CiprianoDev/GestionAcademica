@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\History;
 use Models\Teacher;
 use MVC\Router;
 
@@ -11,6 +12,7 @@ class TeacherController
     public static function teachers(Router $router)
     {
         $allTeachers = Teacher::all();
+        $allTeachersEnrolled = self::countTeachersEnrolled($allTeachers);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $teacherToSearch = $_POST['teacher'];
@@ -22,9 +24,26 @@ class TeacherController
         }
 
         $router->renderView('teachers/teacher', [
-            'allTeachers' => $allTeachers
+            'allTeachers' => $allTeachers,
+            'teachersEnrolled' => $allTeachersEnrolled
         ]);
     }
+
+    public static function countTeachersEnrolled($allTeachers) {
+        $allTeachersEnrolled = [];
+
+        foreach ($allTeachers as $teacher) {
+            $teacherArray = get_object_vars($teacher);
+            $teacherID = $teacherArray['id'];
+            
+            $historyTeacher = History::SQL("SELECT count(idTeacher) FROM history where idTeacher = " . $teacherID);
+            $historyCourseArray = get_object_vars($historyTeacher[0]);
+            array_push($allTeachersEnrolled, $historyCourseArray['count(idTeacher)']);
+        }
+
+        return $allTeachersEnrolled;
+    }
+
     public static function create(Router $router)
     {
         $alerts = [];
