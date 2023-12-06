@@ -13,7 +13,7 @@ class CourseController
     public static function courses(Router $router)
     {
         $allCourses = self::showCourses();
-
+        $allTeachersEnrolled = self::countTeachersEnrolled($allCourses);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -26,7 +26,8 @@ class CourseController
         }
 
         $router->renderView('courses/courses', [
-            'allCourses' => $allCourses
+            'allCourses' => $allCourses,
+            'teachersEnrolled' => $allTeachersEnrolled
         ]);
     }
 
@@ -36,6 +37,21 @@ class CourseController
         $allCourses = $course->getCourses();
 
         return $allCourses;
+    }
+
+    public static function countTeachersEnrolled($allCourses) {
+        $allTeachersEnrolled = [];
+
+        foreach ($allCourses as $course) {
+            $courseArray = get_object_vars($course);
+            $courseID = $courseArray['id'];
+            
+            $historyCourse = History::SQL("SELECT count(idCourse) FROM history where idCourse = " . $courseID);
+            $historyCourseArray = get_object_vars($historyCourse[0]);
+            array_push($allTeachersEnrolled, $historyCourseArray['count(idCourse)']);
+        }
+
+        return $allTeachersEnrolled;
     }
 
     public static function courseInfo(Router $router) {
