@@ -6,19 +6,19 @@ class History extends ActiveRecord {
 
     protected static $table = 'history';
     protected static $dbColumns = [
-        'idHistory', 
+        'id', 
         'idTeacher', 
         'idCourse', 
         'status'
     ];
     
-    public $idHistory;
+    public $id;
     public $idTeacher;
     public $idCourse;
     public $status;
 
     public function __construct($args = []) {
-        $this->idHistory = $args['idHistory'] ?? null;
+        $this->id = $args['id'] ?? null;
         $this->idTeacher = $args['idTeacher'] ?? '';
         $this->idCourse = $args['idCourse'] ?? '';
         $this->status = $args['status'] ?? '';
@@ -27,7 +27,7 @@ class History extends ActiveRecord {
     public function addTeacherToCourse($data) {
         $this->sync($data);
         try {
-            $result = $this->save();
+            $result = $this->create();
         } catch (\Throwable $th) {
             return false;
         }
@@ -41,7 +41,7 @@ class History extends ActiveRecord {
 
     public function undoEnrollTeacher($idHistory) {
         try {
-            $this->delete(self::$dbColumns[0], $idHistory);
+            $this->delete('idHistory', $idHistory);
             return true;
         } catch (\Throwable $th) {
             return false;
