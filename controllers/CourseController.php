@@ -99,7 +99,7 @@ class CourseController
 
 
     public static function editCourse(Router $router)
-    {
+    {       
         $folio = s($_GET['course']);
         $alerts = [];
 

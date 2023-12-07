@@ -4,14 +4,14 @@ namespace Models;
 
 class Teacher extends ActiveRecord{
     protected static $table = 'teachers';
-    protected static $dbColumns = ['id','payroll','name','curp','rfc', 'genre', 'grade', 'idAcademy'];
+    protected static $dbColumns = ['id','payroll','name','curp','rfc', 'sexo', 'grade', 'idAcademy'];
 
     public $id;
     public $payroll;
     public $name;
     public $curp;
     public $rfc;
-    public $genre;
+    public $sexo;
     public $grade;
     public $idAcademy;
 
@@ -22,7 +22,7 @@ class Teacher extends ActiveRecord{
         $this->name = $args['name'] ?? '';
         $this->curp = $args['curp'] ?? '';
         $this->rfc = $args['rfc'] ?? '';
-        $this->genre = $args['genre'] ?? 'Masculino';
+        $this->sexo = $args['sexo'] ?? '';
         $this->idAcademy = $args['idAcademy'] ?? '';
         $this->grade = $args['grade'] ?? '';
     }
