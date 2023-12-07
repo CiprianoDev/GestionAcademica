@@ -4,7 +4,7 @@ namespace Models;
 
 class Teacher extends ActiveRecord{
     protected static $table = 'teachers';
-    protected static $dbColumns = ['id','payroll','name','curp','rfc', 'genre', 'grade', 'idAcademy'];
+    protected static $dbColumns = ['id','payroll','name','curp','rfc', 'sexo', 'grade', 'idAcademy'];
 
     public $id;
     public $payroll;
