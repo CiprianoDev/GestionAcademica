@@ -51,9 +51,9 @@ $cursoActualizacion = "Curso de actualización";
                     <div class="field">
                         <label for="grade">Grado:</label>
                         <select name="grade" id="grade">
-                            <option value="Grado 1" <?php if ("Grado 1" == $teacher->grade) { ?> selected <?php } ?>>Grado 1</option>
-                            <option value="Grado 2" <?php if ("Grado 2" == $teacher->grade) { ?> selected <?php } ?>>Grado 2</option>
-                            <option value="Grado 3" <?php if ("Grado 3" == $teacher->grade) { ?> selected <?php } ?>>Grado 3</option>
+                            <option value="Licenciatura" <?php if ("Licenciatura" == $teacher->grade) { ?> selected <?php } ?>>Licenciatura</option>
+                            <option value="Maestria" <?php if ("Maestria" == $teacher->grade) { ?> selected <?php } ?>>Maestria</option>
+                            <option value="Doctorado" <?php if ("Doctorado" == $teacher->grade) { ?> selected <?php } ?>>Doctorado</option>
                         </select>
                     </div>
                 </div>
