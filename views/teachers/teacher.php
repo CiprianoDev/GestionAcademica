@@ -154,10 +154,10 @@
                     
             ?> 
                 <tr>
-                    <td class="first-column"><?php echo $teacher->name;?></td>
+                    <td class="first-column"><a href="/teacher-info?teacher=<?= $teacher->payroll ?>"><?php echo $teacher->name;?></a></td>
                     <td><?= $teachersEnrolled[$indice] ?></td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td><?= $allStatusPositive[$indice] ?></td>
+                    <td><?= $allStatusNegative[$indice] ?></td>
                     <td class="actions">
                         <p>
                             <a href="/edit-teacher?payroll=<?php echo $teacher->payroll; ?>">

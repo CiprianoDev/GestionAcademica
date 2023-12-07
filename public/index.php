@@ -39,6 +39,7 @@ $router->post('/accredit-course', [HistoryController::class, 'accreditCourse']);
 //Teachers
 $router->get('/teachers',[TeacherController::class,'teachers']);
 $router->post('/teachers',[TeacherController::class,'teachers']);
+$router->get('/teacher-info',[TeacherController::class,'teacherInfo']);
 $router->get('/create-teacher',[TeacherController::class,'create']);
 $router->post('/create-teacher',[TeacherController::class,'create']);
 $router->get('/edit-teacher',[TeacherController::class,'edit']);

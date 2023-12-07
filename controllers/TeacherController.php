@@ -13,7 +13,9 @@ class TeacherController
     public static function teachers(Router $router)
     {
         $allTeachers = Teacher::all();
-        $allTeachersEnrolled = self::countTeachersEnrolled($allTeachers);
+        $allTeachersEnrolled = self::countTeachersEnrolled($allTeachers)[0];
+        $allStatusPositive = self::countTeachersEnrolled($allTeachers)[1];
+        $allStatusNegative = self::countTeachersEnrolled($allTeachers)[2];
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $teacherToSearch = $_POST['teacher'];
@@ -26,23 +28,34 @@ class TeacherController
 
         $router->renderView('teachers/teacher', [
             'allTeachers' => $allTeachers,
-            'teachersEnrolled' => $allTeachersEnrolled
+            'teachersEnrolled' => $allTeachersEnrolled,
+            'allStatusPositive' => $allStatusPositive,
+            'allStatusNegative' => $allStatusNegative,
         ]);
     }
 
     public static function countTeachersEnrolled($allTeachers) {
         $allTeachersEnrolled = [];
+        $allStatusPositive = [];
+        $allStatusNegative = [];
 
         foreach ($allTeachers as $teacher) {
             $teacherArray = get_object_vars($teacher);
             $teacherID = $teacherArray['id'];
             
             $historyTeacher = History::SQL("SELECT count(idTeacher) FROM history where idTeacher = " . $teacherID);
+            $accreditStatusPositive = History::SQL("SELECT count(status) FROM history where idTeacher = " . $teacherID . " AND status = " . 1);
+            $accreditStatusNegative = History::SQL("SELECT count(status) FROM history where idTeacher = " . $teacherID . " AND status = " . -1);
+
+            $arrayStatusPositive = get_object_vars($accreditStatusPositive[0]);
+            $accreditStatusNegative = get_object_vars($accreditStatusNegative[0]);
+            array_push($allStatusPositive, $arrayStatusPositive['count(status)']);
+            array_push($allStatusNegative, $accreditStatusNegative['count(status)']);
             $historyCourseArray = get_object_vars($historyTeacher[0]);
             array_push($allTeachersEnrolled, $historyCourseArray['count(idTeacher)']);
         }
 
-        return $allTeachersEnrolled;
+        return [$allTeachersEnrolled, $allStatusPositive, $allStatusNegative];
     }
 
     public static function create(Router $router)
@@ -139,5 +152,16 @@ class TeacherController
                 header('Location: /teachers');
             }
         }
+    }
+
+    public static function teacherInfo(Router $router) {
+        $teacherPayroll = s($_GET['teacher']);
+        $teacherInfo = Teacher::where('payroll', $teacherPayroll);
+        $academy = Academy::where('idAcademy', get_object_vars($teacherInfo)['idAcademy']);
+
+        $router->renderView('teachers/teacherInfo', [
+            'teacherInfo' => get_object_vars($teacherInfo),
+            'academy' => get_object_vars($academy)
+        ]);
     }
 }

@@ -15,7 +15,7 @@ $cursoActualizacion = "Curso de actualización";
         <div class="contenedor">
 
         <form class="form width-100" method="post" action="/create-teacher">
-                <label class="title">Actualizar Información</label>
+                <label class="title">Agregar Profesor</label>
 
                 <?php include_once __DIR__ . "/../templates/alerts.php" ?>
                 <div class="columns">
