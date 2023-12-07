@@ -42,7 +42,8 @@ class Router
             '/create-teacher',
             '/edit-teacher',
             '/vendedores/eliminar',
-            '/delete-teacher'
+            '/delete-teacher',
+            '/reports'
         ];
 
         if ($method === 'GET') {
