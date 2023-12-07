@@ -116,13 +116,13 @@
 </style>
 
 <div class="container">
-    <?php include_once __DIR__ . '/../templates/menu.php'; ?>
+    <?php include_once __DIR__ . '/../templates/menu.php';
+     ?>
 
     <main class="content">
         <h1>Sistema</h1>
         <div class="options">
             <div class="search">
-                <img src="build/img/icon_filter.svg" alt="Icono Filtrar" class="icon">
                 <form action="" method="post">
                     <div class="search-bar">
                         <input name="course" type="text" class="search-input" placeholder="Buscar curso...">
@@ -141,7 +141,7 @@
             <thead>
                 <tr>
                     <th class="first-column">Nombre Curso</th>
-                    <th>Asistentes</th>
+                    <th>Inscritos</th>
                     <th>Acreditados</th>
                     <th>No acreditados</th>
                     <th>Acciones</th>
@@ -149,6 +149,7 @@
             </thead>
             <tbody>
             <?php
+                $indice = 0;
                 foreach ($allCourses as $objectCourse) {
                     $dataCourse = get_object_vars($objectCourse);
             ?>
@@ -158,9 +159,9 @@
                             <?= $dataCourse['name']; ?>
                         </a>
                     </td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td><?= $teachersEnrolled[$indice] ?></td>
+                    <td><?= $allStatusPositive[$indice] ?></td>
+                    <td><?= $allStatusNegative[$indice] ?></td>
                     <td class="actions">
                         <p>
                             <a href="/edit-course?course=<?= $dataCourse['folio'] ?>">
@@ -177,7 +178,9 @@
                         </p>
                     </td>
                 </tr>
-            <?php } ?>
+            <?php 
+                $indice++;
+            } ?>
             </tbody>
         </table>
     </main>

@@ -39,19 +39,29 @@ $cursoActualizacion = "Curso de actualización";
 
                     <div class="field">
                         <label for="academy">Academia:</label>
-                        <select name="academy" id="academy">
-                            <option value="Academia 1" <?php if ("Academia 1" == $teacher->academy) { ?> selected <?php } ?>>Academia 1</option>
-                            <option value="Academia 2" <?php if ("Academia 2" == $teacher->academy) { ?> selected <?php } ?>>Academia 2</option>
-                            <option value="Academia 3" <?php if ("Academia 3" == $teacher->academy) { ?> selected <?php } ?>>Acdemia 3</option>
-                        </select>
 
+                        <select name="idAcademy" id="academy">
+                            <?php foreach($academies as $academyObject): ?>
+                                <?php $academy = get_object_vars($academyObject); 
+                                ?>
+                                <option value="<?= $academy['idAcademy'] ?>"  <?php if ($academy['idAcademy'] == $teacher->idAcademy) { ?> selected <?php } ?>><?= $academy['nameAcademy'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="field">
                         <label for="grade">Grado:</label>
                         <select name="grade" id="grade">
-                            <option value="Grado 1" <?php if ("Grado 1" == $teacher->grade) { ?> selected <?php } ?>>Grado 1</option>
-                            <option value="Grado 2" <?php if ("Grado 2" == $teacher->grade) { ?> selected <?php } ?>>Grado 2</option>
-                            <option value="Grado 3" <?php if ("Grado 3" == $teacher->grade) { ?> selected <?php } ?>>Grado 3</option>
+                            <option value="Licenciatura" <?php if ("Licenciatura" == $teacher->grade) { ?> selected <?php } ?>>Licenciatura</option>
+                            <option value="Maestria" <?php if ("Maestria" == $teacher->grade) { ?> selected <?php } ?>>Maestria</option>
+                            <option value="Doctorado" <?php if ("Doctorado" == $teacher->grade) { ?> selected <?php } ?>>Doctorado</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="sexo">Grado:</label>
+                        <select name="sexo" id="sexo">
+                            <option value="Masculino" <?php if ("Masculino" == $teacher->sexo) { ?> selected <?php } ?>>Masculino</option>
+                            <option value="Femenino" <?php if ("Femenino" == $teacher->sexo) { ?> selected <?php } ?>>Femenino</option>
                         </select>
                     </div>
                 </div>

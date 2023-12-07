@@ -59,4 +59,22 @@ class HistoryController {
             'alerts' => $alerts
         ]);
     }
+
+    public static function accreditCourse() {
+        $idHistory = s($_POST['idHistory']);
+        $idTeacher = s($_POST['idTeacher']);
+        $idCourse = s($_POST['idCourse']);
+        $folioCourse = s($_POST['folioCourse']);
+        $accreditValue = $_POST['accredited'];
+
+        $history = new History([
+            'id' => $idHistory,
+            'idTeacher' => $idTeacher,
+            'idCourse' => $idCourse,
+            'status' => $accreditValue
+        ]);
+        $history->updateHistory();
+
+        header("Location: /course-info?course=" . $folioCourse);
+    }
 }

@@ -122,7 +122,6 @@
         <h1>Sistema</h1>
         <div class="options">
             <div class="search">
-                <img src="build/img/icon_filter.svg" alt="Icono Filtrar" class="icon">
                 <form method="post">
                     <div class="search-bar">
                         <input name="teacher" type="text" class="search-input" placeholder="Buscar Profesor...">
@@ -149,14 +148,15 @@
             </thead>
             <tbody>
            <?php
+                $indice = 0;
                 foreach ($allTeachers as $teacher):
                     
             ?> 
                 <tr>
-                    <td class="first-column"><?php echo $teacher->name;?></td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td class="first-column"><a href="/teacher-info?teacher=<?= $teacher->payroll ?>"><?php echo $teacher->name;?></a></td>
+                    <td><?= $teachersEnrolled[$indice] ?></td>
+                    <td><?= $allStatusPositive[$indice] ?></td>
+                    <td><?= $allStatusNegative[$indice] ?></td>
                     <td class="actions">
                         <p>
                             <a href="/edit-teacher?payroll=<?php echo $teacher->payroll; ?>">
@@ -167,16 +167,17 @@
                             <form action="/delete-teacher" method="post">
                                 <input type="text" name="payroll" value="<?php echo $teacher->payroll;?>" hidden>
                                 <button type="submit" class="delete-button">
-                                    <!-- <a href=""> -->
-                                        <img src="build/img/icon_delete.svg" alt="Icono eliminar">
-                                    <!-- </a> -->
+                                    <img src="build/img/icon_delete.svg" alt="Icono eliminar">
                                 </button>
                             
                             </form>
                         </p>
                     </td>
                 </tr>
-            <?php endforeach; ?> 
+            <?php 
+                $indice++;     
+            endforeach;
+            ?> 
             </tbody>
         </table>
     </main>

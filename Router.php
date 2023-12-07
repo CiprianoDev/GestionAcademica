@@ -20,13 +20,40 @@ class Router
     public function checkRoutes()
     {
 
-        $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        $currentUrl = strtok($_SERVER['REQUEST_URI'], '?') ?? '/';
         $method = $_SERVER['REQUEST_METHOD'];
+
+        session_start();
+
+        $auth = $_SESSION['login'] ?? null;
+       
+        
+        $method = $_SERVER['REQUEST_METHOD'];
+        $protectedRoutes = [
+            '/dashboard',
+            '/courses', 
+            '/edit-course', 
+            '/delete-course', 
+            '/create-course', 
+            '/course-info', 
+            '/enroll-teacher',
+            '/undo-enroll',
+            '/teachers',
+            '/create-teacher',
+            '/edit-teacher',
+            '/vendedores/eliminar',
+            '/delete-teacher',
+            '/reports'
+        ];
 
         if ($method === 'GET') {
             $fn = $this->getRoutes[$currentUrl] ?? null;
         } else {
             $fn = $this->postRoutes[$currentUrl] ?? null;
+        }
+
+        if (in_array($currentUrl, $protectedRoutes) && !$auth) {
+            header('Location: /');
         }
 
 

@@ -6,19 +6,19 @@ class History extends ActiveRecord {
 
     protected static $table = 'history';
     protected static $dbColumns = [
-        'idHistory', 
+        'id', 
         'idTeacher', 
         'idCourse', 
         'status'
     ];
     
-    public $idHistory;
+    public $id;
     public $idTeacher;
     public $idCourse;
     public $status;
 
     public function __construct($args = []) {
-        $this->idHistory = $args['idHistory'] ?? null;
+        $this->id = $args['id'] ?? null;
         $this->idTeacher = $args['idTeacher'] ?? '';
         $this->idCourse = $args['idCourse'] ?? '';
         $this->status = $args['status'] ?? '';
@@ -27,7 +27,7 @@ class History extends ActiveRecord {
     public function addTeacherToCourse($data) {
         $this->sync($data);
         try {
-            $result = $this->save();
+            $result = $this->create();
         } catch (\Throwable $th) {
             return false;
         }
@@ -35,16 +35,26 @@ class History extends ActiveRecord {
     }
 
     public function getHistoryCourse($idCourse) {
-        $allHistory = $this->SQL("SELECT * FROM history AS H JOIN teachers as T ON H.idTeacher = T.id WHERE H.idCourse = $idCourse ORDER BY T.name");
+        $allHistory = $this->SQL("SELECT * FROM history AS H JOIN teachers as T ON H.idTeacher = T.id WHERE H.idCourse = $idCourse ORDER BY T.idAcademy");
+        return $allHistory;
+    }
+
+    public function getHistoryTeacher($idTeacher) {
+        $allHistory = $this->SQL("SELECT * FROM history AS H JOIN teachers as T ON H.idTeacher = T.id WHERE H.idTeacher = $idTeacher");
         return $allHistory;
     }
 
     public function undoEnrollTeacher($idHistory) {
         try {
-            $this->delete(self::$dbColumns[0], $idHistory);
+            $this->delete('idHistory', $idHistory);
             return true;
         } catch (\Throwable $th) {
             return false;
         }
+    }
+
+    public function updateHistory() {
+        $this->sync();
+        $this->updateWithColumn('idHistory');
     }
 }

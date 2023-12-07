@@ -126,6 +126,28 @@ class ActiveRecord {
         return $result;
     }
 
+    public function updateWithColumn($column)
+    {
+        // Sanitize data
+        $attributes = $this->sanitizeAttributes();
+
+        // Iterate to add each field to the database
+        $values = [];
+        foreach ($attributes as $key => $value) {
+            $values[] = "{$key}='{$value}'";
+        }
+
+        // SQL query
+        $query = "UPDATE " . static::$table . " SET ";
+        $query .=  join(', ', $values);
+        $query .= " WHERE $column = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " LIMIT 1 ";
+
+        // Update the database
+        $result = self::$db->query($query);
+        return $result;
+    }
+
     // Delete a record - Takes the Active Record's ID
     public function delete($column, $value) {
         $query = "DELETE FROM " . static::$table . " WHERE $column = '" . self::$db->escape_string($value) . "' LIMIT 1";
