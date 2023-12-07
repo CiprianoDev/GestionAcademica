@@ -58,8 +58,8 @@ $cursoActualizacion = "Curso de actualización";
                     <div class="field">
                         <label for="sexo">Grado:</label>
                         <select name="sexo" id="sexo">
-                            <option value="Masculino" <?php if ("Masculino" == $teacher->grade) { ?> selected <?php } ?>>Masculino</option>
-                            <option value="Femenino" <?php if ("Femenino" == $teacher->grade) { ?> selected <?php } ?>>Femenino</option>
+                            <option value="Masculino" <?php if ("Masculino" == $teacher->sexo) { ?> selected <?php } ?>>Masculino</option>
+                            <option value="Femenino" <?php if ("Femenino" == $teacher->sexo) { ?> selected <?php } ?>>Femenino</option>
                         </select>
                     </div>
                 </div>
