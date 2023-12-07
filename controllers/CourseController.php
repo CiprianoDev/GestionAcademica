@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\Academy;
 use Models\Course;
 use Models\History;
 use Models\Teacher;
@@ -26,8 +27,8 @@ class CourseController
         }
 
         $router->renderView('courses/courses', [
-            'allCourses' => $allCourses,
-            'teachersEnrolled' => $allTeachersEnrolled
+            'allCourses' => array_reverse($allCourses),
+            'teachersEnrolled' => $allTeachersEnrolled,
         ]);
     }
 
@@ -58,8 +59,17 @@ class CourseController
         if (isset($_GET['course']) && !empty(isset($_GET['course']))) {
             $courseFolio = $_GET['course'];
             $historyCtrl = new HistoryController();
-            $history = $historyCtrl->getHistoryCourse($courseFolio);
             $course = get_object_vars(Course::where('folio', $courseFolio));
+            $history = $historyCtrl->getHistoryCourse($courseFolio);
+
+            $academies = [];
+
+            foreach ($history as $h) {
+                $idAcademy = get_object_vars($h);
+                $academy = Academy::where('idAcademy', $idAcademy['idAcademy']);
+
+                array_push($academies, $academy);
+            }
 
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $teacherToSearch = $_POST['teacher'];
@@ -81,7 +91,8 @@ class CourseController
             $router->renderView('courses/courseInfo', [
                 'course' => $course,
                 'history' => $history,
-                'teachers' => $teachers
+                'teachers' => $teachers,
+                'academies' => $academies
             ]);
         }
     }

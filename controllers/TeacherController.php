@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\Academy;
 use Models\History;
 use Models\Teacher;
 use MVC\Router;
@@ -48,9 +49,13 @@ class TeacherController
     {
         $alerts = [];
         $teacher = new Teacher();
+        $academy = new Academy();
+        $academies = $academy->getAllAcademies();
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $teacher->sync($_POST);
+            // debuguear($_POST);
             $alerts = $teacher->validate();
 
             if (empty($alerts)) {
@@ -68,7 +73,8 @@ class TeacherController
         $alerts = Teacher::getAlerts();
         $router->renderView('teachers/createTeacher', [
             'alerts' => $alerts,
-            'teacher' => $teacher
+            'teacher' => $teacher,
+            'academies' => $academies
         ]);
     }
 
@@ -77,6 +83,8 @@ class TeacherController
     {
         $alerts = [];
         $payroll = s($_GET['payroll']);
+        $academy = new Academy();
+        $academies = $academy->getAllAcademies();
 
         if (!$payroll) header('Location: /teachers');
 
@@ -106,7 +114,8 @@ class TeacherController
         $alerts = Teacher::getAlerts();
         $router->renderView('teachers/editTeacher', [
             'alerts' => $alerts,
-            'teacher' => $teacher
+            'teacher' => $teacher,
+            'academies' => $academies
         ]);
     }
 

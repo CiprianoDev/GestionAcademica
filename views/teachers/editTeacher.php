@@ -39,12 +39,14 @@ $cursoActualizacion = "Curso de actualización";
 
                     <div class="field">
                         <label for="academy">Academia:</label>
-                        <select name="academy" id="academy">
-                            <option value="Academia 1" <?php if ("Academia 1" == $teacher->academy) { ?> selected <?php } ?>>Academia 1</option>
-                            <option value="Academia 2" <?php if ("Academia 2" == $teacher->academy) { ?> selected <?php } ?>>Academia 2</option>
-                            <option value="Academia 3" <?php if ("Academia 3" == $teacher->academy) { ?> selected <?php } ?>>Acdemia 3</option>
-                        </select>
 
+                        <select name="idAcademy" id="academy">
+                            <?php foreach($academies as $academyObject): ?>
+                                <?php $academy = get_object_vars($academyObject); 
+                                ?>
+                                <option value="<?= $academy['idAcademy'] ?>"  <?php if ($academy['idAcademy'] == $teacher->idAcademy) { ?> selected <?php } ?>><?= $academy['nameAcademy'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="field">
                         <label for="grade">Grado:</label>

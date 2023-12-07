@@ -4,15 +4,16 @@ namespace Models;
 
 class Teacher extends ActiveRecord{
     protected static $table = 'teachers';
-    protected static $dbColumns = ['id','payroll','name','curp','rfc','academy','grade'];
+    protected static $dbColumns = ['id','payroll','name','curp','rfc', 'genre', 'grade', 'idAcademy'];
 
     public $id;
     public $payroll;
     public $name;
     public $curp;
     public $rfc;
-    public $academy;
+    public $genre;
     public $grade;
+    public $idAcademy;
 
     public function __construct($args = [])
     {
@@ -21,7 +22,8 @@ class Teacher extends ActiveRecord{
         $this->name = $args['name'] ?? '';
         $this->curp = $args['curp'] ?? '';
         $this->rfc = $args['rfc'] ?? '';
-        $this->academy = $args['academy'] ?? '';
+        $this->genre = $args['genre'] ?? 'Masculino';
+        $this->idAcademy = $args['idAcademy'] ?? '';
         $this->grade = $args['grade'] ?? '';
     }
 
@@ -40,7 +42,7 @@ class Teacher extends ActiveRecord{
         if(!$this->rfc){
             self::$alerts['error'][] = 'El RFC es obligatorio';
         }
-        if(!$this->academy){
+        if(!$this->idAcademy){
             self::$alerts['error'][] = 'Seleccion una academia';
         }
         if(!$this->grade){
