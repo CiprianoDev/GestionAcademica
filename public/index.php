@@ -5,6 +5,7 @@ require_once __DIR__ . '/../includes/app.php';
 use Controllers\CourseController;
 use Controllers\HistoryController;
 use Controllers\LoginController;
+use Controllers\ReportsController;
 use Controllers\TeacherController;
 use MVC\Router;
 $router = new Router();
@@ -40,6 +41,9 @@ $router->post('/create-teacher',[TeacherController::class,'create']);
 $router->get('/edit-teacher',[TeacherController::class,'edit']);
 $router->post('/edit-teacher',[TeacherController::class,'edit']);
 $router->post('/delete-teacher',[TeacherController::class,'delete']);
+
+//Reports
+$router->get('/reports',[ReportsController::class,'reports']);
 
 
 // Check and validate the routes, ensuring their existence and assigning them the Controller functions

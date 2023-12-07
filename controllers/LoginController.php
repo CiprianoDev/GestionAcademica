@@ -1,22 +1,25 @@
-<?php 
+<?php
 
 namespace Controllers;
 
-use Models\User;
 use MVC\Router;
+use Models\User;
+use Models\ActiveRecord;
 
-class LoginController {
-    public static function index (Router $router){
+class LoginController
+{
+    public static function index(Router $router)
+    {
         $alerts = [];
         $user = new User();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user->sync($_POST);
             $alerts = $user->validate();
 
-            if(empty($alerts)){
-                
-                $userExist = $user::where('email',$user->email);
-                
+            if (empty($alerts)) {
+
+                $userExist = $user::where('email', $user->email);
+
                 if ($userExist) {
                     $userEnteredPassword = $user->password;
                     $correctPassword = $userExist->comparePassword($userEnteredPassword);
@@ -28,23 +31,35 @@ class LoginController {
                         $_SESSION['login'] = true;
                         header('Location: /dashboard');
                     }
-
-                
                 }
 
                 User::setAlert('error', 'El correo o la contraseña son incorrectos');
-               
             }
         }
 
         $alerts = User::getAlerts();
-        $router->renderView('auth/login',[
+        $router->renderView('auth/login', [
             'alerts' => $alerts
         ]);
     }
 
-    public static function dashboard(Router $router){
-        $router->renderView('dashboard/dashboard',[
+    public static function dashboard(Router $router)
+    {
+
+        $TotalCapacitados = ActiveRecord::SQL(" SELECT COUNT(DISTINCT teachers.id) AS value
+        FROM history
+        INNER JOIN teachers ON history.idTeacher = teachers.id;");
+
+        $TotalTeachers = ActiveRecord::SQL(" SELECT COUNT(DISTINCT id) AS value
+        FROM teachers;");
+
+        $TotalCourses = ActiveRecord::SQL(" SELECT COUNT(DISTINCT id) AS value
+        FROM teachers;");
+
+        $router->renderView('dashboard/dashboard', [
+            'TotalCapacitados' => array_shift($TotalCapacitados),
+            'TotalTeachers' => array_shift($TotalTeachers),
+            'TotalCourses' => array_shift($TotalCourses)
         ]);
     }
 
