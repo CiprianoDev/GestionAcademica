@@ -122,7 +122,6 @@
         <h1>Sistema</h1>
         <div class="options">
             <div class="search">
-                <img src="build/img/icon_filter.svg" alt="Icono Filtrar" class="icon">
                 <form method="post">
                     <div class="search-bar">
                         <input name="teacher" type="text" class="search-input" placeholder="Buscar Profesor...">
@@ -168,9 +167,7 @@
                             <form action="/delete-teacher" method="post">
                                 <input type="text" name="payroll" value="<?php echo $teacher->payroll;?>" hidden>
                                 <button type="submit" class="delete-button">
-                                    <!-- <a href=""> -->
-                                        <img src="build/img/icon_delete.svg" alt="Icono eliminar">
-                                    <!-- </a> -->
+                                    <img src="build/img/icon_delete.svg" alt="Icono eliminar">
                                 </button>
                             
                             </form>

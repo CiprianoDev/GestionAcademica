@@ -123,7 +123,6 @@
         <h1>Sistema</h1>
         <div class="options">
             <div class="search">
-                <img src="build/img/icon_filter.svg" alt="Icono Filtrar" class="icon">
                 <form action="" method="post">
                     <div class="search-bar">
                         <input name="course" type="text" class="search-input" placeholder="Buscar curso...">

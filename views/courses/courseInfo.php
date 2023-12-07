@@ -223,7 +223,6 @@
 
         <div class="options">
             <div class="search">
-                <img src="build/img/icon_filter.svg" alt="Icono Filtrar" class="icon">
                 <form method="post">
                     <div class="search-bar">
                         <input type="text" class="search-input" name="teacher" placeholder="Buscar profesor...">
