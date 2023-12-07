@@ -199,7 +199,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <h4 class="margin">Administració:</h3>
+                <h4 class="margin">Administración:</h3>
                 <table>
                     <thead>
                         <tr>
@@ -241,7 +241,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <h4 class="margin">ALimentarias:</h3>
+                <h4 class="margin">Alimentarias:</h3>
                 <table>
                     <thead>
                         <tr>
@@ -275,9 +275,30 @@
                     <tbody>
 
                         <tr>
-                            <td><?php echo $TotalMecatrónicaC->value; ?></td>
-                            <td><?php echo ($TotalMecatrónica->value - $TotalMecatrónicaC->value); ?></td>
-                            <td><?php echo $TotalMecatrónica->value; ?></td>
+                            <td><?php echo $TotalElectronicaC->value; ?></td>
+                            <td><?php echo ($TotalElectronica->value - $TotalElectronicaC->value); ?></td>
+                            <td><?php echo $TotalElectronica->value; ?></td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+                <h4 class="margin">Mecatrónica:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Docentes Con Cursos</th>
+                            <th>Docentes Sin cursos</th>
+                            <th>Total De Docentes</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><?php echo $TotalMecatronicaC->value; ?></td>
+                            <td><?php echo ($TotalMecatronica->value - $TotalMecatronicaC->value); ?></td>
+                            <td><?php echo $TotalMecatronica->value; ?></td>
 
 
                         </tr>

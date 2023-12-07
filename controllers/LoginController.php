@@ -54,7 +54,7 @@ class LoginController
         FROM teachers;");
 
         $TotalCourses = ActiveRecord::SQL(" SELECT COUNT(DISTINCT id) AS value
-        FROM teachers;");
+        FROM courses;");
 
         $router->renderView('dashboard/dashboard', [
             'TotalCapacitados' => array_shift($TotalCapacitados),

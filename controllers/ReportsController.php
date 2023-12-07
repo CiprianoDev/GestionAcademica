@@ -203,7 +203,7 @@ class ReportsController
         'TotalMecanica' => array_shift($TotalMecanica),
         'TotalAlimentarias' => array_shift($TotalAlimentarias),
         'TotalElectronica' => array_shift($TotalElectronica),
-        'TotalMecatronicaC' => array_shift($TotalMecatronica),
+        'TotalMecatronica' => array_shift($TotalMecatronica),
         'TotalCivil' => array_shift($TotalCivil),
         'TotalIndustrial' => array_shift($TotalIndustrial),
         'TotalTeachers' => array_shift($TotalTeachers)
