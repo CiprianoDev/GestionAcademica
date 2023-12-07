@@ -13,6 +13,7 @@ $router = new Router();
 //Login
 $router->get('/', [LoginController::class,'index']);
 $router->post('/', [LoginController::class,'index']);
+$router->get('/logout', [LoginController::class,'logout']);
 
 //Dashboard
 

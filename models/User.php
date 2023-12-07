@@ -11,7 +11,7 @@ class User extends ActiveRecord
     public $email;
     public $password;
     private $privateKeyFilePath = __DIR__ . "/../includes/key/private_key.pem";
-    //private $publicKeyFilePath = __DIR__ . "/../includes/key/public_key.pem";
+    private $publicKeyFilePath = __DIR__ . "/../includes/key/public_key.pem";
 
     public function __construct($args = [])
     {
@@ -30,6 +30,32 @@ class User extends ActiveRecord
         }
 
         return self::$alerts;
+    }
+
+    public function encryptPassword($userEnteredPassword)
+    {
+        $publicKey = $this->loadPublicKey();
+
+        if ($publicKey) {
+            $dataToEncrypt = $userEnteredPassword;
+
+            openssl_public_encrypt($dataToEncrypt, $encryptedPassword, $publicKey);
+
+            return base64_encode($encryptedPassword);
+        } else {
+            return false;
+        }
+    }
+
+    private function loadPublicKey()
+    {
+        $publicKey = null;
+
+        if (file_exists($this->publicKeyFilePath)) {
+            $publicKey = openssl_pkey_get_public("file://$this->publicKeyFilePath");
+        }
+
+        return $publicKey;
     }
 
     private function loadPrivateKey()

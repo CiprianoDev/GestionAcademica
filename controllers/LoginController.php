@@ -22,6 +22,10 @@ class LoginController {
                     $correctPassword = $userExist->comparePassword($userEnteredPassword);
 
                     if ($correctPassword) {
+                        if (session_status() === PHP_SESSION_NONE) {
+                            session_start();
+                        }
+                        $_SESSION['login'] = true;
                         header('Location: /dashboard');
                     }
 
@@ -42,5 +46,15 @@ class LoginController {
     public static function dashboard(Router $router){
         $router->renderView('dashboard/dashboard',[
         ]);
+    }
+
+    public static function logout(Router $router)
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION = [];
+        header('Location: /');
     }
 }
