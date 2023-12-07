@@ -117,8 +117,6 @@
 
 <div class="container">
     <?php include_once __DIR__ . '/../templates/menu.php';
-    // debuguear($teachersEnrolled);
-    // debuguear($allCourses);
      ?>
 
     <main class="content">
@@ -163,8 +161,8 @@
                         </a>
                     </td>
                     <td><?= $teachersEnrolled[$indice] ?></td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td><?= $allStatusPositive[$indice] ?></td>
+                    <td><?= $allStatusNegative[$indice] ?></td>
                     <td class="actions">
                         <p>
                             <a href="/edit-course?course=<?= $dataCourse['folio'] ?>">

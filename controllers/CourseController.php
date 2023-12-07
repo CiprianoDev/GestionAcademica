@@ -14,7 +14,9 @@ class CourseController
     public static function courses(Router $router)
     {
         $allCourses = self::showCourses();
-        $allTeachersEnrolled = self::countTeachersEnrolled($allCourses);
+        $allTeachersEnrolled = self::countTeachersEnrolled($allCourses)[0];
+        $allStatusPositive = self::countTeachersEnrolled($allCourses)[1];
+        $allStatusNegative = self::countTeachersEnrolled($allCourses)[2];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -29,6 +31,8 @@ class CourseController
         $router->renderView('courses/courses', [
             'allCourses' => array_reverse($allCourses),
             'teachersEnrolled' => array_reverse($allTeachersEnrolled),
+            'allStatusPositive' => array_reverse($allStatusPositive),
+            'allStatusNegative' => array_reverse($allStatusNegative),
         ]);
     }
 
@@ -42,17 +46,26 @@ class CourseController
 
     public static function countTeachersEnrolled($allCourses) {
         $allTeachersEnrolled = [];
+        $allStatusPositive = [];
+        $allStatusNegative = [];
 
         foreach ($allCourses as $course) {
             $courseArray = get_object_vars($course);
             $courseID = $courseArray['id'];
             
             $historyCourse = History::SQL("SELECT count(idCourse) FROM history where idCourse = " . $courseID);
+            $accreditStatusPositive = History::SQL("SELECT count(status) FROM history where idCourse = " . $courseID . " AND status = " . 1);
+            $accreditStatusNegative = History::SQL("SELECT count(status) FROM history where idCourse = " . $courseID . " AND status = " . -1);
+            
+            $arrayStatusPositive = get_object_vars($accreditStatusPositive[0]);
+            $accreditStatusNegative = get_object_vars($accreditStatusNegative[0]);
+            array_push($allStatusPositive, $arrayStatusPositive['count(status)']);
+            array_push($allStatusNegative, $accreditStatusNegative['count(status)']);
             $historyCourseArray = get_object_vars($historyCourse[0]);
             array_push($allTeachersEnrolled, $historyCourseArray['count(idCourse)']);
         }
 
-        return $allTeachersEnrolled;
+        return [$allTeachersEnrolled, $allStatusPositive, $allStatusNegative];
     }
 
     public static function courseInfo(Router $router) {
