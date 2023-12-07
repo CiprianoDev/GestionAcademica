@@ -160,7 +160,37 @@
         <p><strong>RFC:</strong> <?= $teacherInfo['rfc']; ?></p>
         <p><strong>Sexo:</strong> <?= $teacherInfo['genre']; ?></p>
         <p><strong>Grado:</strong> <?= $teacherInfo['grade']; ?></p>
-        <p><strong>Academia:</strong> <?= $academy['nameAcademy']; ?></p>
+        <p><strong>Academia:</strong> <?= $academy['nameAcademy']; ?></p>        
+        <details open>
+            <summary class="enrolled"><strong>Cursos inscritos:</strong></summary>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="column-accredited">Curso</th>
+                        <th>Acreditado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php for ($i = 0; $i < count($courses); $i++) { ?>
+                    <tr>
+                        <td class="column-accredited"><?= $courses[$i] ?></td>
+                        <td>
+                            <?php if ($status[$i] == -1) {
+                                echo "No acreditado";
+                            } else if ($status[$i] == 1) {
+                                echo "Acreditado";
+                            } else {
+                                echo "Pendiente";
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                <?php 
+                }
+                ?>
+                </tbody>
+            </table>
+        </details>
 
     </main>
 </div>

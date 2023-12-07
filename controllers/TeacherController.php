@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Models\Academy;
+use Models\Course;
 use Models\History;
 use Models\Teacher;
 use MVC\Router;
@@ -159,9 +160,25 @@ class TeacherController
         $teacherInfo = Teacher::where('payroll', $teacherPayroll);
         $academy = Academy::where('idAcademy', get_object_vars($teacherInfo)['idAcademy']);
 
+        $historyModel = new History();
+        $history = $historyModel->getHistoryTeacher(get_object_vars($teacherInfo)['id']);
+        
+        $coursesName = [];
+        $accreditCourse = [];
+        foreach ($history as $historyObject) {
+            $historyArray = get_object_vars($historyObject);
+            $courseFolio = $historyArray['idCourse'];
+            $course = Course::where('id', $courseFolio);
+            
+            array_push($accreditCourse, $historyArray['status']);
+            array_push($coursesName, get_object_vars($course)['name']);
+        }
+
         $router->renderView('teachers/teacherInfo', [
             'teacherInfo' => get_object_vars($teacherInfo),
-            'academy' => get_object_vars($academy)
+            'academy' => get_object_vars($academy),
+            'courses' => $coursesName,
+            'status' => $accreditCourse
         ]);
     }
 }

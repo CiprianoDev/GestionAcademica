@@ -39,6 +39,11 @@ class History extends ActiveRecord {
         return $allHistory;
     }
 
+    public function getHistoryTeacher($idTeacher) {
+        $allHistory = $this->SQL("SELECT * FROM history AS H JOIN teachers as T ON H.idTeacher = T.id WHERE H.idTeacher = $idTeacher");
+        return $allHistory;
+    }
+
     public function undoEnrollTeacher($idHistory) {
         try {
             $this->delete('idHistory', $idHistory);
