@@ -54,6 +54,7 @@
     table {
         display: flex;
         margin-top: 30px;
+        margin-right: 50px;
         flex-direction: column;
         align-items: center;
     }
@@ -124,11 +125,27 @@
     .btn-enroll:hover {
         background-color: rgba(0, 71, 186, .4);
     }
+    .header-payroll {
+        height: 19.2px;
+    }
+    .column-payroll {
+        width: 50px;
+    }
 </style>
 
 <div class="container">
     <?php include_once __DIR__ . '/../templates/menu.php'; ?>
-    <?php $nameTeachersEnrolled = []; ?>
+    <?php $nameTeachersEnrolled = [];
+
+    $teachersAcademy1 = [];
+    $teachersAcademy2 = [];
+    $teachersAcademy3 = [];
+    $teachersAcademy4 = [];
+    $teachersAcademy5 = [];
+    $teachersAcademy6 = [];
+    $teachersAcademy7 = [];
+    $teachersAcademy = [];
+    ?>
 
     <main class="content">
 
@@ -141,21 +158,45 @@
         <p><strong>Tipo de curso:</strong> <?= $course['type']; ?></p>        
         <details>
             <summary class="enrolled"><strong>Profesores inscritos:</strong></summary>
-            <?php foreach($history as $historyObject) {
-                $historyData = get_object_vars($historyObject); 
-                array_push($nameTeachersEnrolled, $historyData['name']);
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Academia</th>
+                        <th>Grado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                $indice = 0;
+                foreach($history as $historyObject) {
+                    $historyData = get_object_vars($historyObject);
+                    array_push($nameTeachersEnrolled, $historyData['name']);
+                    $academiesArray = get_object_vars($academies[$indice]);
+                    ?>
+                    <tr>
+                        <td><?= $historyData['name'] ?></td>
+                        <td><?= $academiesArray['nameAcademy'] ?></td>
+                        <td><?= $historyData['grade'] ?></td>
+                        <td>
+                            <form action="/undo-enroll" method="post">
+                                <p class="teacher-name">
+                                    <input type="hidden" name="history" value="<?= $historyData['idHistory'] ?>">
+                                    <input type="hidden" name="course" value="<?= $_GET['course']; ?>">
+                                    <button type="submit" class="delete-button">
+                                        <img src="build/img/icon_delete.svg" alt="Icono eliminar">
+                                    </button>
+                                </p>
+                            </form>
+                        </td>
+                    </tr>
+                <?php 
+                    $indice++;
+                }
                 ?>
-                <form action="/undo-enroll" method="post">
-                    <p class="teacher-name">
-                        <input type="hidden" name="history" value="<?= $historyData['idHistory'] ?>">
-                        <input type="hidden" name="course" value="<?= $_GET['course']; ?>">
-                        <button type="submit" class="delete-button">
-                            <img src="build/img/icon_delete.svg" alt="Icono eliminar">
-                        </button>
-                        <?= $historyData['name']; ?>
-                    </p>
-                </form>
-            <?php } ?>
+                </tbody>
+            </table>
         </details>
 
         <div class="options">
