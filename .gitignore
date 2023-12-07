@@ -5,3 +5,4 @@
 /vendor
 
 includes/database.php
+includes/.env 
