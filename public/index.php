@@ -28,8 +28,11 @@ $router->get('/create-course', [CourseController::class, 'createCourse']);
 $router->post('/create-course', [CourseController::class, 'createCourse']);
 $router->get('/course-info', [CourseController::class, 'courseInfo']);
 $router->post('/course-info', [CourseController::class, 'courseInfo']);
+
+// History
 $router->post('/enroll-teacher', [HistoryController::class, 'enrollTeacher']);
 $router->post('/undo-enroll', [HistoryController::class, 'undoEnrollTeacher']);
+$router->post('/accredit-course', [HistoryController::class, 'accreditCourse']);
 
 //Teachers
 $router->get('/teachers',[TeacherController::class,'teachers']);

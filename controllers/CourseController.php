@@ -28,7 +28,7 @@ class CourseController
 
         $router->renderView('courses/courses', [
             'allCourses' => array_reverse($allCourses),
-            'teachersEnrolled' => $allTeachersEnrolled,
+            'teachersEnrolled' => array_reverse($allTeachersEnrolled),
         ]);
     }
 

@@ -109,11 +109,6 @@
         gap: 10px;
         align-items: center;
     }
-    .delete-button {
-        background-color: #fff;
-        border: none;
-        cursor: pointer;
-    }
     .btn-enroll {
         background-color: #C3D3EE;
         color: #000;
@@ -131,20 +126,32 @@
     .column-payroll {
         width: 50px;
     }
+    .column-delete {
+        width: 80px;
+        height: 19.2px;
+    }
+    .delete-button {
+        background-color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    .column-accredited {
+        width: 280px;
+    }
+    select {
+        padding: 1.2rem 1rem;
+        background-color: #fff;
+        border: 1px solid #8692a6;
+    }
+    .btn-accredited {
+        padding: 1.2rem 1rem;
+        cursor: pointer;
+    }
 </style>
 
 <div class="container">
     <?php include_once __DIR__ . '/../templates/menu.php'; ?>
     <?php $nameTeachersEnrolled = [];
-
-    $teachersAcademy1 = [];
-    $teachersAcademy2 = [];
-    $teachersAcademy3 = [];
-    $teachersAcademy4 = [];
-    $teachersAcademy5 = [];
-    $teachersAcademy6 = [];
-    $teachersAcademy7 = [];
-    $teachersAcademy = [];
     ?>
 
     <main class="content">
@@ -156,7 +163,7 @@
         <p><strong>Inicio-Fin del curso:</strong> <?= $course['startDate']; ?> - <?= $course['finishDate']; ?></p>
         <p><strong>Aula:</strong> <?= $course['classroom']; ?></p>
         <p><strong>Tipo de curso:</strong> <?= $course['type']; ?></p>        
-        <details>
+        <details open>
             <summary class="enrolled"><strong>Profesores inscritos:</strong></summary>
             <table>
                 <thead>
@@ -164,7 +171,8 @@
                         <th>Nombre</th>
                         <th>Academia</th>
                         <th>Grado</th>
-                        <th>Acciones</th>
+                        <th>Eliminar del curso</th>
+                        <th class="column-accredited">Acreditar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -188,6 +196,20 @@
                                         <img src="build/img/icon_delete.svg" alt="Icono eliminar">
                                     </button>
                                 </p>
+                            </form>
+                        </td>
+                        <td class="column-accredited">
+                            <form action="/accredit-course" method="post">
+                                <input type="hidden" name="idHistory" value="<?= $historyData['idHistory'] ?>">
+                                <input type="hidden" name="idTeacher" value="<?= $historyData['id'] ?>">
+                                <input type="hidden" name="idCourse" value="<?= $course['id'] ?>">
+                                <input type="hidden" name="folioCourse" value="<?= $course['folio'] ?>">
+                                <select name="accredited" id="accredited">
+                                    <option value="0" <?php if ($historyData['status'] == "0") { ?> selected <?php } ?>>Pendiente</option>
+                                    <option value="1" <?php if ($historyData['status'] == "1") { ?> selected <?php } ?>>Acreditado</option>
+                                    <option value="-1" <?php if ($historyData['status'] == "-1") { ?> selected <?php } ?>>No acreditado</option>
+                                </select>
+                                <button type="submit" class="btn-accredited">Guardar</button>
                             </form>
                         </td>
                     </tr>

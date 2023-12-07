@@ -116,7 +116,10 @@
 </style>
 
 <div class="container">
-    <?php include_once __DIR__ . '/../templates/menu.php'; ?>
+    <?php include_once __DIR__ . '/../templates/menu.php';
+    // debuguear($teachersEnrolled);
+    // debuguear($allCourses);
+     ?>
 
     <main class="content">
         <h1>Sistema</h1>

@@ -47,4 +47,9 @@ class History extends ActiveRecord {
             return false;
         }
     }
+
+    public function updateHistory() {
+        $this->sync();
+        $this->updateWithColumn('idHistory');
+    }
 }
