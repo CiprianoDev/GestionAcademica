@@ -116,7 +116,10 @@
 </style>
 
 <div class="container">
-    <?php include_once __DIR__ . '/../templates/menu.php'; ?>
+    <?php 
+    include_once __DIR__ . '/../templates/menu.php';
+    $active = ['Inactivo', 'Activo'];
+    ?>
 
     <main class="content">
         <h1>Sistema</h1>
@@ -140,6 +143,7 @@
             <thead>
                 <tr>
                     <th class="first-column">Profesores</th>
+                    <th>Estado</th>
                     <th>Cursos</th>
                     <th>Acreditados</th>
                     <th>No acreditados</th>
@@ -154,6 +158,7 @@
             ?> 
                 <tr>
                     <td class="first-column"><a href="/teacher-info?teacher=<?= $teacher->payroll ?>"><?php echo $teacher->name;?></a></td>
+                    <td><?= $active[$teacher->active] ?></td>
                     <td><?= $teachersEnrolled[$indice] ?></td>
                     <td><?= $allStatusPositive[$indice] ?></td>
                     <td><?= $allStatusNegative[$indice] ?></td>
