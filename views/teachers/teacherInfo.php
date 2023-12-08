@@ -152,7 +152,7 @@
 <div class="container">
     <?php 
         include_once __DIR__ . '/../templates/menu.php';
-        $status = ['Inactivo', 'Activo'];
+        $active = ['Inactivo', 'Activo'];
     ?>
     <main class="content">
 
@@ -165,7 +165,7 @@
         <p><strong>Sexo:</strong> <?= $teacherInfo['genre']; ?></p>
         <p><strong>Grado:</strong> <?= $teacherInfo['grade']; ?></p>
         <p><strong>Academia:</strong> <?= $academy['nameAcademy']; ?></p>
-        <p><strong>Estado:</strong> <?= $status[$teacherInfo['status']] ?></p>
+        <p><strong>Estado:</strong> <?= $active[$teacherInfo['active']] ?></p>
         <details open>
             <summary class="enrolled"><strong>Cursos inscritos:</strong></summary>
             <table>

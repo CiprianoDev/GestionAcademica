@@ -4,7 +4,7 @@ namespace Models;
 
 class Teacher extends ActiveRecord{
     protected static $table = 'teachers';
-    protected static $dbColumns = ['id','payroll','name', 'email', 'curp','rfc', 'genre', 'grade', 'status', 'idAcademy'];
+    protected static $dbColumns = ['id','payroll','name', 'email', 'curp','rfc', 'genre', 'grade', 'active', 'idAcademy'];
 
     public $id;
     public $payroll;
@@ -14,7 +14,7 @@ class Teacher extends ActiveRecord{
     public $rfc;
     public $genre;
     public $grade;
-    public $status;
+    public $active;
     public $idAcademy;
 
     public function __construct($args = [])
@@ -27,7 +27,7 @@ class Teacher extends ActiveRecord{
         $this->rfc = $args['rfc'] ?? '';
         $this->genre = $args['genre'] ?? '';
         $this->grade = $args['grade'] ?? '';
-        $this->status = $args['status'] ?? '';
+        $this->active = $args['active'] ?? '';
         $this->idAcademy = $args['idAcademy'] ?? '';
     }
 

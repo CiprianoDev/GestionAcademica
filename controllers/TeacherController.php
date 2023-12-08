@@ -69,7 +69,6 @@ class TeacherController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $teacher->sync($_POST);
-            // debuguear($_POST);
             $alerts = $teacher->validate();
 
             if (empty($alerts)) {
