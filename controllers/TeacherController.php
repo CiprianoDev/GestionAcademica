@@ -167,8 +167,11 @@ class TeacherController
         $accreditCourse = [];
         foreach ($history as $historyObject) {
             $historyArray = get_object_vars($historyObject);
-            $courseFolio = $historyArray['idCourse'];
-            $course = Course::where('id', $courseFolio);
+            $courseID = $historyArray['idCourse'];
+
+            if (is_null($courseID)) continue;
+            
+            $course = Course::where('id', $courseID);
             
             array_push($accreditCourse, $historyArray['status']);
             array_push($coursesName, get_object_vars($course)['name']);

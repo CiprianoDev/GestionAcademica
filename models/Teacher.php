@@ -4,15 +4,17 @@ namespace Models;
 
 class Teacher extends ActiveRecord{
     protected static $table = 'teachers';
-    protected static $dbColumns = ['id','payroll','name','curp','rfc', 'sexo', 'grade', 'idAcademy'];
+    protected static $dbColumns = ['id','payroll','name', 'email', 'curp','rfc', 'genre', 'grade', 'status', 'idAcademy'];
 
     public $id;
     public $payroll;
     public $name;
+    public $email;
     public $curp;
     public $rfc;
-    public $sexo;
+    public $genre;
     public $grade;
+    public $status;
     public $idAcademy;
 
     public function __construct($args = [])
@@ -20,11 +22,13 @@ class Teacher extends ActiveRecord{
         $this->id = $args['id'] ?? null;
         $this->payroll = $args['payroll'] ?? '';
         $this->name = $args['name'] ?? '';
+        $this->email = $args['email'] ?? '';
         $this->curp = $args['curp'] ?? '';
         $this->rfc = $args['rfc'] ?? '';
-        $this->sexo = $args['sexo'] ?? '';
-        $this->idAcademy = $args['idAcademy'] ?? '';
+        $this->genre = $args['genre'] ?? '';
         $this->grade = $args['grade'] ?? '';
+        $this->status = $args['status'] ?? '';
+        $this->idAcademy = $args['idAcademy'] ?? '';
     }
 
     public function validate()

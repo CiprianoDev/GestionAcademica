@@ -150,17 +150,22 @@
 </style>
 
 <div class="container">
-    <?php include_once __DIR__ . '/../templates/menu.php'; ?>
+    <?php 
+        include_once __DIR__ . '/../templates/menu.php';
+        $status = ['Inactivo', 'Activo'];
+    ?>
     <main class="content">
 
         <h2>Datos del profesor</h2>
         <p><strong>Número de nómina:</strong> <?= $teacherInfo['payroll']; ?></p>
         <p><strong>Nombre:</strong> <?= $teacherInfo['name']; ?></p>
+        <p><strong>Email:</strong> <?= $teacherInfo['email']; ?></p>
         <p><strong>CURP:</strong> <?= $teacherInfo['curp']; ?></p>
         <p><strong>RFC:</strong> <?= $teacherInfo['rfc']; ?></p>
         <p><strong>Sexo:</strong> <?= $teacherInfo['genre']; ?></p>
         <p><strong>Grado:</strong> <?= $teacherInfo['grade']; ?></p>
-        <p><strong>Academia:</strong> <?= $academy['nameAcademy']; ?></p>        
+        <p><strong>Academia:</strong> <?= $academy['nameAcademy']; ?></p>
+        <p><strong>Estado:</strong> <?= $status[$teacherInfo['status']] ?></p>
         <details open>
             <summary class="enrolled"><strong>Cursos inscritos:</strong></summary>
             <table>
