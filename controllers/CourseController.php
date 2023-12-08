@@ -74,6 +74,7 @@ class CourseController
             $historyCtrl = new HistoryController();
             $course = get_object_vars(Course::where('folio', $courseFolio));
             $history = $historyCtrl->getHistoryCourse($courseFolio);
+            $allTeachers = Teacher::all();
 
             $academies = [];
 
@@ -91,20 +92,12 @@ class CourseController
 
                 $searchResult = Teacher::search($teacherToSearch);
                 $allTeachers = $searchResult;
-
-                $router->renderView('courses/courseInfo', [
-                    'course' => $course,
-                    'history' => $history,
-                    'teachers' => $allTeachers
-                ]);
-
             }
 
-            $teachers = Teacher::all();
             $router->renderView('courses/courseInfo', [
                 'course' => $course,
                 'history' => $history,
-                'teachers' => $teachers,
+                'teachers' => $allTeachers,
                 'academies' => $academies
             ]);
         }
