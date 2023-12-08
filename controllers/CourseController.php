@@ -74,7 +74,7 @@ class CourseController
             $historyCtrl = new HistoryController();
             $course = get_object_vars(Course::where('folio', $courseFolio));
             $history = $historyCtrl->getHistoryCourse($courseFolio);
-            $allTeachers = Teacher::all();
+            $allTeachers = Teacher::SQL("SELECT * FROM teachers WHERE active = 1");
 
             $academies = [];
 
@@ -90,7 +90,7 @@ class CourseController
 
                 if (!$teacherToSearch) header("Location: /course-info?course=$courseFolio");
 
-                $searchResult = Teacher::search($teacherToSearch);
+                $searchResult = Teacher::SQL("SELECT * FROM teachers WHERE name LIKE '%$teacherToSearch%' AND active = 1");
                 $allTeachers = $searchResult;
             }
 

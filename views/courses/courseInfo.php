@@ -184,7 +184,7 @@
                     $academiesArray = get_object_vars($academies[$indice]);
                     ?>
                     <tr>
-                        <td><?= $historyData['name'] ?></td>
+                        <td><a href="/teacher-info?teacher=<?= $historyData['payroll'] ?>"><?= $historyData['name'] ?></a></td>
                         <td><?= $academiesArray['nameAcademy'] ?></td>
                         <td><?= $historyData['grade'] ?></td>
                         <td>
