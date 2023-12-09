@@ -8,6 +8,8 @@ use Models\History;
 use Models\Teacher;
 use MVC\Router;
 
+use function PHPSTORM_META\type;
+
 class TeacherController
 {
 
@@ -163,7 +165,10 @@ class TeacherController
         $history = $historyModel->getHistoryTeacher(get_object_vars($teacherInfo)['id']);
         
         $coursesName = [];
+        $coursesFolio = [];
+        $coursesPeriod = [];
         $accreditCourse = [];
+
         foreach ($history as $historyObject) {
             $historyArray = get_object_vars($historyObject);
             $courseID = $historyArray['idCourse'];
@@ -174,12 +179,16 @@ class TeacherController
             
             array_push($accreditCourse, $historyArray['status']);
             array_push($coursesName, get_object_vars($course)['name']);
+            array_push($coursesFolio, get_object_vars($course)['folio']);
+            array_push($coursesPeriod, get_object_vars($course)['period']);
         }
 
         $router->renderView('teachers/teacherInfo', [
             'teacherInfo' => get_object_vars($teacherInfo),
             'academy' => get_object_vars($academy),
             'courses' => $coursesName,
+            'folios' => $coursesFolio,
+            'periods' => $coursesPeriod,
             'status' => $accreditCourse
         ]);
     }

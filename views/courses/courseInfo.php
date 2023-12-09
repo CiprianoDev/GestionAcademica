@@ -225,7 +225,7 @@
             <div class="search">
                 <form method="post">
                     <div class="search-bar">
-                        <input type="text" class="search-input" name="teacher" placeholder="Buscar profesor...">
+                        <input type="text" class="search-input" name="teacher" placeholder="Buscar teacher...">
                         <img src="build/img/icon_search.svg" alt="Icono búsqueda" class="icon icon-search">
                     </div>
                 </form>
@@ -242,7 +242,6 @@
             <tbody>
                 <?php 
                 $nameAllTeachers = [];
-                $diff = array_diff($nameAllTeachers, $nameTeachersEnrolled);
                     foreach($teachers as $teacherObject) {
                         $teacher = get_object_vars($teacherObject);
                         if (array_search($teacher['name'], $nameTeachersEnrolled)) {
@@ -250,7 +249,7 @@
                         }
                 ?>
                     <tr>
-                        <td class="first-column"><?= $teacher['name'] ?></td>
+                        <td class="first-column"><a href="/teacher-info?teacher=<?= $teacher['payroll'] ?>"><?= $teacher['name'] ?></a></td>
                         <form action="/enroll-teacher" method="post">
                             <td>
                                 <input type="hidden" name="teacher" value="<?= $teacher['payroll'] ?>">

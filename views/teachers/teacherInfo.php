@@ -22,8 +22,6 @@
         text-align: left;
     }
     .options {
-        width: 100%;
-        height: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -37,12 +35,13 @@
         width: 400px;
         height: 50px;
         display: flex;
+        align-items: center;
     }
     .search-input {
         width: 100%;
         height: 100%;
         border: 1px solid #000;
-        border-radius: 20px;
+        border-radius: 30px;
         padding: 5px 20px;
     }
     .icon {
@@ -166,19 +165,26 @@
         <p><strong>Grado:</strong> <?= $teacherInfo['grade']; ?></p>
         <p><strong>Academia:</strong> <?= $academy['nameAcademy']; ?></p>
         <p><strong>Estado:</strong> <?= $active[$teacherInfo['active']] ?></p>
+
         <details open>
             <summary class="enrolled"><strong>Cursos inscritos:</strong></summary>
             <table>
                 <thead>
                     <tr>
                         <th class="column-accredited">Curso</th>
+                        <th>Periodo</th>
                         <th>Acreditado</th>
                     </tr>
                 </thead>
                 <tbody>
-                <?php for ($i = 0; $i < count($courses); $i++) { ?>
+                <?php 
+                if ($searched) {
+                    debuguear($searched);
+                }
+                for ($i = 0; $i < count($courses); $i++) { ?>
                     <tr>
-                        <td class="column-accredited"><?= $courses[$i] ?></td>
+                        <td class="column-accredited"><a href="course-info?course=<?= $folios[$i] ?>"><?= $courses[$i] ?></a></td>
+                        <td><?= $periods[$i] ?></td>
                         <td>
                             <?php if ($status[$i] == -1) {
                                 echo "No acreditado";
